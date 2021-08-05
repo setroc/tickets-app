@@ -1,0 +1,33 @@
+.navbar__container {
+    background-color: $blue;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    align-items: center;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+
+    .data__container {
+        align-self: center;
+        p {
+            color: white;
+        }
+    }
+
+    .btn-logout {
+        margin: 0;
+        border: none;
+        background-color: $blue;
+        padding: 10px 0;
+        border-radius: 10px;
+        i {
+            margin-right: 5px;
+            font-size: 2rem;
+            color: white;
+        }
+        span {
+            font-size: 2rem;
+            color: white;
+        }
+    }
+}

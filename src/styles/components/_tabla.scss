@@ -1,0 +1,65 @@
+.tabla_container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-spacing: 0;
+    thead {
+        width: 100%;
+    }
+    th {
+        font-size: 1.7rem;
+        font-weight: 400;
+        border: 1px solid $gray;
+        border-top: none;
+        background-color: lighten($color: $gray, $amount: 20%);
+    }
+    td {
+        font-size: 1.7rem;
+        text-align: center;
+        border: 1px solid lighten($color: $gray, $amount: 20%);
+        border-top: none;
+    }
+
+    input[type="date"],
+    input[type="time"] {
+        border-bottom: none;
+    }
+}
+// .tabla_container {
+//     .titulos {
+//         // padding: 5px;
+//         // margin: 0px;
+
+//         margin: 0;
+//         padding: 0;
+
+//         display: grid;
+//         grid-template-columns: 4% repeat(6, 9%) 15% 17% 10%;
+//         grid-template-rows: 1fr;
+//         justify-items: center;
+//         background-color: lighten($color: $gray, $amount: 20%);
+//         li {
+//             align-self: center;
+//             text-align: start;
+//             // margin: 0 5px;
+//             width: 100%;
+//             height: 100%;
+//             border-right: 1px solid black;
+//         }
+
+//     }
+    
+//     .item {
+//         padding: 0;
+//         margin: 10px;
+//         display: grid;
+//         grid-template-columns: 2% repeat(2, 10%) repeat(4, 9%) 15% 17% 10%;
+//         grid-template-rows: 1fr;
+//         justify-items: center;
+
+//         li {
+//             font-size: 1.5rem;
+//             align-self: center;
+//         }
+//     }
+// }
