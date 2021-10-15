@@ -66,9 +66,11 @@ p {
     flex-direction: column;
     width: 90%;
     margin: 0 auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     label {
         font-size: 2rem;
+    }
+    &:last-of-type {
         margin-bottom: 10px;
     }
 }
@@ -82,4 +84,37 @@ textarea {
 li {
     font-size: 1.7rem;
     list-style: none;
+}
+
+input[type=datetime-local] {
+    border-bottom: none;
+    border: 1px solid $gray;
+    padding: 15px;
+    border-radius: 5px;
+    color: black;
+    font-size: 1.5rem;
+}
+#datetime-tabla {
+    border: none;
+    width: 100%;
+    padding: 0;
+}
+//scrollbar
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
 }

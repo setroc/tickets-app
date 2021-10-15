@@ -1,6 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Item } from './Item'
+import { traerTickets } from '../../actions/ticket';
 
-export const TablaScreen = () => {
+
+export const TablaScreen = ({fechaInicio, fechaFin}) => {
+
+    const {tickets} = useSelector(state => state.ticket);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (!!fechaFin !== false && !!fechaFin !== false) {
+            dispatch(traerTickets(fechaInicio, fechaFin));
+        }
+    }, [dispatch, fechaInicio, fechaFin])
+
+
     return (
         <table className="tabla_container">
             <thead>
@@ -8,36 +24,21 @@ export const TablaScreen = () => {
                     <th>No.</th>
                     <th>Fecha Solicitud</th>
                     <th>Hora Solicitud</th>
-                    <th>Fecha Inicio</th>
-                    <th>Hora Inicio</th>
-                    <th>Fecha Fin</th>
-                    <th>Hora Fin</th>
+                    <th>Fecha y Hora Inicio</th>
+                    {/* <th>Hora Inicio</th> */}
+                    <th>Fecha y Hora Fin</th>
+                    {/* <th>Hora Fin</th> */}
                     <th>Solicito</th>
                     <th>Solicitud</th>
                     <th>Número de Folio</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>10/05/2021</td>
-                    <td>08:30</td>
-                    <td>
-                        <input type="date" name="" id="" />
-                    </td>
-                    <td>
-                        <input type="time" name="" id="" />
-                    </td>
-                    <td>
-                        <input type="date" name="" id="" />
-                    </td>
-                    <td>
-                        <input type="time" name="" id="" />
-                    </td>
-                    <td>Jorge Mejía</td>
-                    <td>Cambiar de hardphone a softphone el usuario (sperez) con extensión (1582)</td>
-                    <td>10052021-01</td>
-                </tr>
+                {
+                    tickets && tickets.map((ticket,i) => {
+                        return <Item ticket={ticket} key={ticket._id} i={i}/>
+                    })
+                }
             </tbody>
         </table>
         // <div className="tabla_container">

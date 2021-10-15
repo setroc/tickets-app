@@ -7,6 +7,8 @@ export const types = {
     authLogout: '[auth] Logout',
 
     ticketSolicitarTicket: '[ticket] Solcitando nuevo ticket',
-    ticketSolicitado: '[ticket] Solicitado'
-
+    ticketSolicitado: '[ticket] Solicitado',
+    ticketCargados: '[ticket] Tickets cargados',
+    ticketActualizado: '[ticket] Ticket actualizado',
+    ticketLogout: '[ticket] Logout Borrando tickets'
 }

@@ -16,11 +16,25 @@ export const TicketScreen = () => {
     })
     const {text} = formValues;
 
+    //inputs radio
+    const [lugar, setLugar] = useState('cat');
+    const handleRadioLugarChange = (e)=> {
+        setLugar(e.target.value);
+    }
+    
+    const [tipo, setTipo] = useState('solicitud');
+    const handleRadioTipoChange = (e)=> {
+        setTipo(e.target.value);
+    }
+
+
     const [selectedImage, setSelectedImage] = useState(null);
+    const [image, setImage] = useState(null);
     const handleImageChange = (e) => {
         if (e.target.files?.length === 1) {
             setSelectedImage(e.target.files[0]);
             setLimitSize(limitSize-e.target.files[0].size);
+            setImage(URL.createObjectURL(e.target.files[0]));
         }
     }
     const [selectedFiles, setSelectedFiles] = useState(null);
@@ -43,6 +57,7 @@ export const TicketScreen = () => {
 
     const handleSubmit = (e)=> {
         e.preventDefault();
+
         if ( !validarFormulario() ) {
             Swal.fire({
                 title: "Es necesario incluir explicación en la solicitud",
@@ -87,18 +102,79 @@ export const TicketScreen = () => {
         }
         formData.append('message', text.replaceAll('<','(').replaceAll('>',')'));
         formData.append('fechaSolicitud',Date());
+        formData.append('lugar',lugar);
+        formData.append('tipo',tipo);
 
         dispatch( solicitarTicket(formData) );
 
         reset();
         setSelectedImage(null);
+        setImage(null);
         setSelectedFiles(null);
+        setLugar('cat');
+        setTipo('solicitud');
     }   
+
+    
 
     return (
         <div className="ticket__container">
             <NavBar />
             <form onSubmit={handleSubmit}>
+                <div className="input__container radio">
+                    <div>
+                        <h3 className="radio--title">Seleccione el lugar del servicio</h3>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="lugar" 
+                                value="cat" 
+                                id="cat"
+                                checked={lugar === 'cat' ? true : false}
+                                onChange={handleRadioLugarChange}
+                                />
+                                Coorporativo Caja
+                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="lugar" 
+                                value="consejo" 
+                                id="consejo" 
+                                checked={lugar === 'consejo' ? true : false}
+                                onChange={handleRadioLugarChange}
+                            />
+                            Consejo
+                        </label>
+                    </div>
+
+                    <div>
+                        <h3 className="radio--title">Seleccione el tipo de servicio</h3>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="tipo" 
+                                value="solicitud" 
+                                id="solicitud" 
+                                checked={tipo === 'solicitud' ? true : false}
+                                onChange={handleRadioTipoChange}
+                            />
+                            Solicitud
+                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                name="tipo" 
+                                value="incidente" 
+                                id="incidente" 
+                                checked={tipo === 'incidente' ? true : false}
+                                onChange={handleRadioTipoChange}
+                            />
+                            Incidente
+                        </label>
+                    </div>
+
+                </div>
                 <div className="input__container">
                     <label htmlFor="text">Explique de la mejor manera el incidente o solicitud que desea reportar</label>
                     <textarea 
@@ -134,6 +210,7 @@ export const TicketScreen = () => {
                                 type="file" 
                                 name="files" 
                                 id="files"
+                                accept="audio/*,video/*,.pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain"
                                 onChange={handleFilesChange}
                                 multiple
                             />
@@ -142,9 +219,17 @@ export const TicketScreen = () => {
                                 Cargar Archivos
                             </label>
                         </div>
-
                     </div>
                 </div>
+
+                {
+                    image && (
+                        <div className="input__container image">
+                            <p className="input__p">Previsualización de la imagen seleccionada</p>
+                            <img src={image} alt="imagen"/>
+                        </div>
+                    )
+                }
 
                 <div className="input__container">
                     <button

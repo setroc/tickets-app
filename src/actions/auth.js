@@ -20,10 +20,11 @@ export const startLogin = (email, password) => {
         const body = await resp.json();
         if (body.ok) {
             localStorage.setItem('token', body.token);
-            const {nombre, uid} = body.usuario;
+            const {nombre, uid, role} = body.usuario;
             dispatch(login({
                 nombre, 
-                uid
+                uid,
+                role
             }))
         }else {
             Swal.fire('Error', body.msg, 'error');
@@ -38,11 +39,15 @@ const login = (usuario) => ({
 export const startLogout = () => {
     return (dispatch)=> {
         localStorage.clear();
+        dispatch(logoutTicket());
         dispatch(logout());
     }
 }
 const logout = () => ({
     type: types.authLogout
+});
+const logoutTicket = () => ({
+    type: types.ticketLogout
 })
 //Register
 export const startRegister = (nombre, email, password)=> {
@@ -89,7 +94,8 @@ export const startChecking = () => {
                 localStorage.setItem('token', body.token);
                 dispatch(login({
                     uid: body.uid,
-                    nombre: body.nombre
+                    nombre: body.nombre,
+                    role: body.role
                 }))
             }else {
                 dispatch(checkingFinish());

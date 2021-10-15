@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import {
-    BrowserRouter as Router,
+    // BrowserRouter as Router,
+    HashRouter,
     Switch,
     Redirect
 } from 'react-router-dom';
@@ -12,12 +13,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startChecking } from '../actions/auth';
 import { RegisterScreen } from '../components/login/RegisterScreen';
 import { AdminScreen } from '../components/admin/AdminScreen';
+import { AdminRoute } from './AdminRoute';
 
 export const AppRouter = () => {
 
     const dispatch = useDispatch();
-    const {uid, checking} = useSelector(state => state.auth);
-
+    const {uid, checking, role} = useSelector(state => state.auth);
     useEffect(() => {
         dispatch(startChecking());
     }, [dispatch])
@@ -29,10 +30,9 @@ export const AppRouter = () => {
     }
 
     return (
-        <Router>
+        <HashRouter>
             <div>
                 <Switch>
-
                     <PublicRoute 
                         exact 
                         path="/login" 
@@ -45,24 +45,22 @@ export const AppRouter = () => {
                         component={ RegisterScreen }
                         isAuthenticated={!!uid}
                     />
-
-
                     <PrivateRoute
                         exact 
                         path="/" 
-                        component={ TicketScreen }
+                        component={TicketScreen}
                         isAuthenticated={!!uid}
-                    />
-                    <PrivateRoute 
-                        exact
-                        path="/admin"
-                        component= { AdminScreen }
+                    /> 
+                    <AdminRoute
+                        exact 
+                        path="/admin" 
+                        component={AdminScreen}
                         isAuthenticated={!!uid}
+                        role={role}
                     />
-
-                    <Redirect to="/" />   
+                    <Redirect to="/" />
                 </Switch>
             </div>
-        </Router>
+        </HashRouter>
     )
 }

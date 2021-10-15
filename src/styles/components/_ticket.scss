@@ -3,8 +3,10 @@
     border-radius: 25px;
     max-width: 800px;
     margin: 0 auto;
+    max-height: 600px;
+    overflow-y: auto;
     form {
-        margin-top: 10px;
+        margin-top: 74px;
     }
 
     .input__p {
@@ -57,6 +59,45 @@
         transition: color .5s ease-in-out;
         &:hover {
             background-color: darken($color: $blue, $amount: 5);
+        }
+    }
+
+}
+.input__container.image {
+    img {
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+.input__container.radio {
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: space-between;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    
+    div {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        justify-items: center;
+        align-items: center;
+        .radio--title {
+            // grid-column-start: 1;
+            // grid-column-end: 3;
+            text-align: center;
+            font-weight: normal;
+        }
+        label {
+            font-size: 1.8rem;
+            &:hover {
+                cursor: pointer;
+            }
+            input {
+                margin-right: 5px;
+            }
         }
     }
 }

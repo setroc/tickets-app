@@ -2,9 +2,11 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../actions/auth';
 
+import { Link } from 'react-router-dom'
+
 export const NavBar = () => {
 
-    const {nombre} = useSelector(state => state.auth);
+    const {nombre, role} = useSelector(state => state.auth);
     const dispatch = useDispatch();
     const handleLogout = ()=> {
         dispatch(startLogout());
@@ -16,13 +18,20 @@ export const NavBar = () => {
                 <p>Bienvenido {nombre}</p>
             </div>
             <div className="data__container">
-                <button
-                    className="btn-logout btn-block"
-                    onClick={handleLogout}
-                >
-                    <i className="fas fa-sign-out-alt"></i>
-                    <span>Salir</span>
-                </button>
+                <div className="buttons">
+                    {
+                        (role==="ADMIN") && (
+                            <Link to="/admin">Reportes</Link>
+                        )
+                    }
+                    <button
+                        className="btn-logout btn-block"
+                        onClick={handleLogout}
+                    >
+                        <i className="fas fa-sign-out-alt"></i>
+                        <span>Salir</span>
+                    </button>
+                </div>
             </div>
         </div>
     )
