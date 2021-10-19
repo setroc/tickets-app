@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { startLogin } from '../../actions/auth';
 import { useForm } from './../../hooks/useForm';
 
+import logo from '../../assets/logo.png';
+
 export const LoginScreen = () => {
 
     const [formValues, handleInputChange] = useForm({
@@ -18,8 +20,10 @@ export const LoginScreen = () => {
         e.preventDefault();
         dispatch( startLogin(email, password) );
     }
+
     return (
         <div className="login__container">
+            <img src={logo} alt="logo" className="logo"/>
             <h1>Iniciar Sesión</h1>
             <form onSubmit={handleSubmit}>
                 <div className="input__container">

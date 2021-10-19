@@ -3,10 +3,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    // position: fixed;
-    // width: 800px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: fixed;
+    width: 800px;
     
     .data__container {
         align-self: center;
@@ -45,4 +45,9 @@
             color: white;
         }
     }
+}
+.navbar__container.navbar__container-admin {
+    background-color: $blue;
+    position: static;
+    width: 100%;
 }

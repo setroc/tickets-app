@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { startLogout } from '../../actions/auth';
 
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export const NavBar = () => {
 
@@ -11,17 +11,21 @@ export const NavBar = () => {
     const handleLogout = ()=> {
         dispatch(startLogout());
     }
-
+    const {pathname} = useLocation();
     return (
-        <div className="navbar__container">
+        <div className={`navbar__container ${(pathname === '/admin') ? 'navbar__container-admin' : ''}`} >
             <div className="data__container">
                 <p>Bienvenido {nombre}</p>
             </div>
             <div className="data__container">
                 <div className="buttons">
                     {
-                        (role==="ADMIN") && (
+                        (role==="ADMIN" && pathname==='/') 
+                        ? (
                             <Link to="/admin">Reportes</Link>
+                        )
+                        : (
+                            <Link to="/">Inicio</Link>
                         )
                     }
                     <button
