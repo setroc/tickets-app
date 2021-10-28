@@ -7,7 +7,7 @@ import moment from 'moment';
 moment.locale('es-mx');
 const initialValues = {
     inicio : moment().set({hour:0, minute:0}).format("YYYY-MM-DD[T]HH:mm"),
-    fin: moment().format("YYYY-MM-DD[T]HH:mm")
+    fin: moment().set({hour:23,minute:59}).format("YYYY-MM-DD[T]HH:mm")
 }
 export const AdminScreen = () => {
 
@@ -21,6 +21,28 @@ export const AdminScreen = () => {
     const handleDateFinChange = (e)=> {
         setfechaFin(moment(e.target.value).format("YYYY-MM-DD[T]HH:mm"));
     }
+
+    // const handleDownloadFile = async () => {
+    //     console.log('click')
+    //     const resp = await fetch(`/api/ticket/download`);
+    //     const blob = await resp.blob();
+    //     const url = window.URL.createObjectURL(new Blob([blob]));
+    //     const link = document.createElement('a');
+    //     link.href = url;
+    //     link.setAttribute(
+    //         'download',
+    //         `FileName.png`,
+    //     );
+      
+    //     // Append to html link element page
+    //     document.body.appendChild(link);
+    
+    //     // Start download
+    //     link.click();
+    
+    //     // Clean up and remove the link
+    //     link.parentNode.removeChild(link);
+    // }
     return (
         <div className="admin__container">
             <NavBar/>
@@ -49,7 +71,9 @@ export const AdminScreen = () => {
             </div>
             <TablaScreen fechaInicio={fechaInicio} fechaFin={fechaFin} />
             <div className="input__container">
-                <button className="btn-">Exportar</button>
+                <button className="btn-block">
+                    Exportar
+                </button>
             </div>
         </div>
     )

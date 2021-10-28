@@ -24,7 +24,8 @@ export const LoginScreen = () => {
     return (
         <div className="login__container">
             <img src={logo} alt="logo" className="logo"/>
-            <h1>Iniciar Sesión</h1>
+            <h1>Sistema de Tickets</h1>
+            <h2>Iniciar Sesión</h2>
             <form onSubmit={handleSubmit}>
                 <div className="input__container">
                     <label htmlFor="email">Ingresar Email</label>

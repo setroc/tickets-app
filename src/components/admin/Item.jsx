@@ -2,7 +2,7 @@ import moment from 'moment';
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import { actualizarFecha } from '../../actions/ticket';
-moment.locale('es-mx');
+import 'moment/locale/es-mx';
 
 export const Item = ({ticket,i}) => {
 

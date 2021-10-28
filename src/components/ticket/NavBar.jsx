@@ -4,6 +4,8 @@ import { startLogout } from '../../actions/auth';
 
 import { Link, useLocation } from 'react-router-dom'
 
+import logo from '../../assets/logo.png';
+
 export const NavBar = () => {
 
     const {nombre, role} = useSelector(state => state.auth);
@@ -15,6 +17,7 @@ export const NavBar = () => {
     return (
         <div className={`navbar__container ${(pathname === '/admin') ? 'navbar__container-admin' : ''}`} >
             <div className="data__container">
+                <img src={logo} alt="logo" className={`logo ${(pathname === '/admin') ? 'logo-admin' : ''}`}/>
                 <p>Bienvenido {nombre}</p>
             </div>
             <div className="data__container">

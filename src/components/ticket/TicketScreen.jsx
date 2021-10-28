@@ -189,7 +189,7 @@ export const TicketScreen = () => {
                 </div>
 
                 <div className="input__container">
-                    <p className="input__p">En caso de ser necesario</p>
+                    <p className="input__p">En caso de ser necesario.</p>
                     <div className="files">
                         <div className="file__container">
                             <input 
@@ -201,7 +201,7 @@ export const TicketScreen = () => {
                             />
                             <label htmlFor="images">
                                 <i className="fas fa-upload"></i>
-                                Cargar Imagen
+                                Cargar Imagen*
                             </label>
                         </div>
 
@@ -216,10 +216,11 @@ export const TicketScreen = () => {
                             />
                             <label htmlFor="files">
                                 <i className="fas fa-upload"></i>
-                                Cargar Archivos
+                                Cargar Archivos*
                             </label>
                         </div>
                     </div>
+                    <p className="input__p--nota">* No se aceptan archivos mayores a 10MB.</p>
                 </div>
 
                 {

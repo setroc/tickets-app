@@ -12,6 +12,12 @@
     .input__p {
         margin-bottom: 10px;
     }
+    .input__p--nota {
+        text-align: right;
+        font-size: 1.5rem;
+        color: red;
+        margin-top: 5px;
+    }
     .files {
 
         display: flex;
@@ -79,25 +85,31 @@
     gap: 10px;
     
     div {
+        border-right: 1px solid $blue;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 1fr;
-        justify-items: center;
+        // justify-items: center;
         align-items: center;
         .radio--title {
             // grid-column-start: 1;
             // grid-column-end: 3;
-            text-align: center;
+            // text-align: center;
             font-weight: normal;
         }
         label {
             font-size: 1.8rem;
+            justify-self: flex-start;
             &:hover {
                 cursor: pointer;
             }
             input {
                 margin-right: 5px;
             }
+        }
+
+        &:last-of-type {
+            border-right: none;
         }
     }
 }
