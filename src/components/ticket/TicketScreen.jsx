@@ -12,6 +12,7 @@ import Reporte from './../reporte/Reporte';
 import CargarArchivos from '../cargarArchivos/CargarArchivos';
 import CargarImagen from '../cargarImagen/CargarImagen';
 import { NavBar } from './../navbar/NavBar';
+import ArchivoItem from '../archivoItem/ArchivoItem';
 
 export const TicketScreen = () => { 
 
@@ -29,8 +30,14 @@ export const TicketScreen = () => {
     //estado de imagen y archvios subidos
     const [selectedImage, setSelectedImage] = useState(null);
     const [image, setImage] = useState(null);
-    const [selectedFiles, setSelectedFiles] = useState(null);
-
+    const [selectedFiles, setSelectedFiles] = useState([]);
+    //borrar archivo
+    const onDeleteFile = (name, size) => {
+        setLimitSize((prevSate) => (prevSate + size));
+        setSelectedFiles(selectedFiles.filter((file) => {
+            return (file.name !== name) && file  
+        }));
+    }
     const validarFormulario = () => {
         //valido que el mensaje no este vacio
         if (text.length === 0) {
@@ -137,16 +144,30 @@ export const TicketScreen = () => {
                     )
                 }
                 {
-                    selectedFiles && (
+                    (selectedFiles.length > 0) && (
                         <div className="input__container image">
                             <p className="input__p">Archivos seleccionados</p>
                             <ul>
                                 {
-                                    Array.from(selectedFiles).map((file, i) => (
-                                        <li key={i}>{file.name}</li>
+                                    selectedFiles.map((file) => (
+                                        <ArchivoItem 
+                                            key={file.name}
+                                            nombre={file.name}
+                                            tam={file.size}
+                                            onDeleteFile={() => onDeleteFile(file.name, file.size)}
+                                        />
                                     ))
                                 }
                             </ul>
+                            {/* <ul>
+                                {
+                                    Array.from(selectedFiles).map((file) => (
+                                        <li key={file.name} onClick={(e)=>{
+                                            console.log(e.target)
+                                        }}>{file.name}</li>
+                                    ))
+                                }
+                            </ul> */}
                         </div>
                     )
                 }

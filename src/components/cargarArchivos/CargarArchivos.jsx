@@ -1,7 +1,8 @@
 const CargarArchivos = ({setSelectedFiles, setLimitSize}) => {
     const handleFilesChange = (e) => {
+        console.log(e.target.files)
         if (e.target.files?.length > 0) {
-            setSelectedFiles(e.target.files);
+            setSelectedFiles(Array.from(e.target.files));
             for (let i = 0; i<e.target.files.length;i++) {
                 setLimitSize((prevState)=>(prevState-e.target.files[i].size));
             } 
@@ -18,7 +19,6 @@ const CargarArchivos = ({setSelectedFiles, setLimitSize}) => {
                 multiple
             />
             <label htmlFor="files">
-                <i className="fas fa-upload"></i>
                 Cargar Archivos*
             </label>
         </div>

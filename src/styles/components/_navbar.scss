@@ -49,15 +49,9 @@
         background-color: transparent;
         padding: 10px 0;
         border-radius: 10px;
-        i {
-            margin-right: 5px;
-            font-size: 2rem;
-            color: white;
-        }
-        span {
-            font-size: 2rem;
-            color: white;
-        }
+        font-size: 2rem;
+        color: white;
+        display: flex;
     }
 }
 .navbar__container.navbar__container-admin {

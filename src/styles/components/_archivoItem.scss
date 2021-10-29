@@ -1,0 +1,21 @@
+.fileItem {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 5px;
+    // list-style: disc;
+    &>.fileItem__datos {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        &>p {
+            font-size: 1.5rem;
+        }
+    }
+    &>.fileItem__delete {
+        cursor: pointer;
+        color: red;
+        font-weight: bold;
+    }
+}

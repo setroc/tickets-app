@@ -16,7 +16,6 @@ const CargarImagen = ({setSelectedImage, setImage ,setLimitSize}) => {
                 onChange={handleImageChange}
             />
             <label htmlFor="images">
-                <i className="fas fa-upload"></i>
                 Cargar Imagen*
             </label>
         </div>
