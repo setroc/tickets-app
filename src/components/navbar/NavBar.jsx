@@ -1,8 +1,9 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { startLogout } from '../../actions/auth';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom'
+
+import { startLogout } from '../../actions/auth';
 
 import logo from '../../assets/logo.png';
 
@@ -22,13 +23,15 @@ export const NavBar = () => {
             </div>
             <div className="data__container">
                 <div className="buttons">
-                    {
-                        (role==="ADMIN" && pathname==='/') 
-                        ? (
-                            <Link to="/admin">Reportes</Link>
-                        )
-                        : (
-                            <Link to="/">Inicio</Link>
+                    {   
+                        (role!=='USER') && (
+                            (role==="ADMIN" && pathname==='/') 
+                            ? (
+                                <Link to="/admin">Reportes</Link>
+                            )
+                            : (
+                                <Link to="/">Inicio</Link>
+                            )
                         )
                     }
                     <button

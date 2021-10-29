@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { useForm } from './../../hooks/useForm';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
+
+import { useForm } from './../../hooks/useForm';
+
 import { solicitarTicket } from '../../actions/ticket';
 
 import Lugar from '../lugar/Lugar';
