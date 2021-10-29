@@ -231,7 +231,20 @@ export const TicketScreen = () => {
                         </div>
                     )
                 }
-
+                {
+                    selectedFiles && (
+                        <div className="input__container image">
+                            <p className="input__p">Archivos seleccionados</p>
+                            <ul>
+                                {
+                                    Array.from(selectedFiles).map((file, i) => (
+                                        <li key={i}>{file.name}</li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    )
+                }
                 <div className="input__container">
                     <button
                         className="btn-block btn-login"
