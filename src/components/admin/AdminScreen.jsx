@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { NavBar } from '../ticket/NavBar'
-import { TablaScreen } from './TablaScreen'
 
 import moment from 'moment';
+
+import { TablaScreen } from './TablaScreen'
+import { NavBar } from './../navbar/NavBar';
 
 moment.locale('es-mx');
 const initialValues = {

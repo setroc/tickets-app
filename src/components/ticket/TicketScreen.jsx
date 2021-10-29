@@ -1,51 +1,33 @@
 import React, { useState } from 'react'
-import { NavBar } from './NavBar';
 import { useForm } from './../../hooks/useForm';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { solicitarTicket } from '../../actions/ticket';
 
+import Lugar from '../lugar/Lugar';
+import Tipo from '../tipo/Tipo';
+import Reporte from './../reporte/Reporte';
+import CargarArchivos from '../cargarArchivos/CargarArchivos';
+import CargarImagen from '../cargarImagen/CargarImagen';
+import { NavBar } from './../navbar/NavBar';
+
 export const TicketScreen = () => { 
 
     const dispatch = useDispatch();
-
+    //estado que cuenta el tamaño de los archivos seleecionados tanto de la imagen como los archivos, no debe ser mayor a 10MB
     const [limitSize, setLimitSize] = useState(10 * 1024 * 1024);
-
+    //estado del texto ingresado
     const [formValues, handleInputChange, reset] = useForm({
         text: ''
     })
     const {text} = formValues;
-
-    //inputs radio
+    //estado de los input radio
     const [lugar, setLugar] = useState('cat');
-    const handleRadioLugarChange = (e)=> {
-        setLugar(e.target.value);
-    }
-    
     const [tipo, setTipo] = useState('solicitud');
-    const handleRadioTipoChange = (e)=> {
-        setTipo(e.target.value);
-    }
-
-
+    //estado de imagen y archvios subidos
     const [selectedImage, setSelectedImage] = useState(null);
     const [image, setImage] = useState(null);
-    const handleImageChange = (e) => {
-        if (e.target.files?.length === 1) {
-            setSelectedImage(e.target.files[0]);
-            setLimitSize(limitSize-e.target.files[0].size);
-            setImage(URL.createObjectURL(e.target.files[0]));
-        }
-    }
     const [selectedFiles, setSelectedFiles] = useState(null);
-    const handleFilesChange = (e) => {
-        if (e.target.files?.length > 0) {
-            setSelectedFiles(e.target.files);
-            for (let i = 0; i<e.target.files.length;i++) {
-                setLimitSize(limitSize-e.target.files[i].size);
-            } 
-        }
-    }
 
     const validarFormulario = () => {
         //valido que el mensaje no este vacio
@@ -122,103 +104,24 @@ export const TicketScreen = () => {
             <NavBar />
             <form onSubmit={handleSubmit}>
                 <div className="input__container radio">
-                    <div>
-                        <h3 className="radio--title">Seleccione el lugar del servicio</h3>
-                        <label>
-                            <input 
-                                type="radio" 
-                                name="lugar" 
-                                value="cat" 
-                                id="cat"
-                                checked={lugar === 'cat' ? true : false}
-                                onChange={handleRadioLugarChange}
-                                />
-                                Coorporativo Caja
-                        </label>
-                        <label>
-                            <input 
-                                type="radio" 
-                                name="lugar" 
-                                value="consejo" 
-                                id="consejo" 
-                                checked={lugar === 'consejo' ? true : false}
-                                onChange={handleRadioLugarChange}
-                            />
-                            Consejo
-                        </label>
-                    </div>
-
-                    <div>
-                        <h3 className="radio--title">Seleccione el tipo de servicio</h3>
-                        <label>
-                            <input 
-                                type="radio" 
-                                name="tipo" 
-                                value="solicitud" 
-                                id="solicitud" 
-                                checked={tipo === 'solicitud' ? true : false}
-                                onChange={handleRadioTipoChange}
-                            />
-                            Solicitud
-                        </label>
-                        <label>
-                            <input 
-                                type="radio" 
-                                name="tipo" 
-                                value="incidente" 
-                                id="incidente" 
-                                checked={tipo === 'incidente' ? true : false}
-                                onChange={handleRadioTipoChange}
-                            />
-                            Incidente
-                        </label>
-                    </div>
-
+                    <Lugar lugar={lugar} setLugar={setLugar}/>
+                    <Tipo tipo={tipo} setTipo={setTipo} />
                 </div>
-                <div className="input__container">
-                    <label htmlFor="text">Explique de la mejor manera el incidente o solicitud que desea reportar</label>
-                    <textarea 
-                        name="text" 
-                        id="text"
-                        rows="8"
-                        placeholder="Realizar cambio de hardphone a softphone del usuario <nombre> con extensión <ext>"
-                        value={text}
-                        onChange={handleInputChange}
-                    >
-                    </textarea>
-                </div>
+
+                <Reporte text={text} handleInputChange={handleInputChange} />
 
                 <div className="input__container">
                     <p className="input__p">En caso de ser necesario.</p>
                     <div className="files">
-                        <div className="file__container">
-                            <input 
-                                type="file" 
-                                name="images" 
-                                id="images"
-                                accept="image/*"
-                                onChange={handleImageChange}
-                            />
-                            <label htmlFor="images">
-                                <i className="fas fa-upload"></i>
-                                Cargar Imagen*
-                            </label>
-                        </div>
-
-                        <div className="file__container">
-                            <input 
-                                type="file" 
-                                name="files" 
-                                id="files"
-                                accept="audio/*,video/*,.pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel, application/vnd.ms-powerpoint,text/plain"
-                                onChange={handleFilesChange}
-                                multiple
-                            />
-                            <label htmlFor="files">
-                                <i className="fas fa-upload"></i>
-                                Cargar Archivos*
-                            </label>
-                        </div>
+                        <CargarImagen 
+                            setSelectedImage={setSelectedImage} 
+                            setImage={setImage} 
+                            setLimitSize={setLimitSize}
+                        />                        
+                        <CargarArchivos
+                            setSelectedFiles={setSelectedFiles}
+                            setLimitSize={setLimitSize}
+                        />
                     </div>
                     <p className="input__p--nota">* No se aceptan archivos mayores a 10MB.</p>
                 </div>
