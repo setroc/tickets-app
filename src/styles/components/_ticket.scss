@@ -1,12 +1,12 @@
 .ticket__container {
     background-color: $primary;
-    border-radius: 10px;
-    max-width: 800px;
+    border-radius: 0 0 10px 10px;
+    width: 800px;
     margin: 0 auto;
     max-height: 600px;
     overflow-y: auto;
     form {
-        margin-top: 74px;
+        margin-top: 10px;
     }
 
     .input__p {
@@ -70,6 +70,7 @@
 
 }
 .input__container.image {
+    position: relative;
     img {
         width: 70%;
         margin: 0 auto;
@@ -77,6 +78,17 @@
     ul {
         padding: 0;
     }
+    // div {
+    //     padding: 5px;
+    //     color: red;
+    //     font-size: 2rem;
+    //     font-weight: bold;
+    //     cursor: pointer;
+    //     width: auto;
+    //     position: absolute;
+    //     top: 22px;
+    //     right: 97px;
+    // }
 }
 .input__container.radio {
     // display: flex;

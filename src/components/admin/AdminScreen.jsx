@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 
 import moment from 'moment';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { TablaScreen } from './TablaScreen'
 import { NavBar } from './../navbar/NavBar';
+import { traerTickets } from '../../actions/ticket';
 
 moment.locale('es-mx');
 const initialValues = {
@@ -11,42 +13,30 @@ const initialValues = {
     fin: moment().set({hour:23,minute:59}).format("YYYY-MM-DD[T]HH:mm")
 }
 export const AdminScreen = () => {
+    const {tickets} = useSelector(state => state.ticket);
+    const dispatch = useDispatch();
 
     const [fechaInicio, setFechaInicio] = useState(initialValues.inicio);
     // const [fechaInicio, setFechaInicio] = useState('');
     const handleDateInicioChange = (e)=> {
         setFechaInicio(moment(e.target.value).format("YYYY-MM-DD[T]HH:mm"));
+        setDisabled(false);
     }
     const [fechaFin, setfechaFin] = useState(initialValues.fin);
     // const [fechaFin, setfechaFin] = useState('');
     const handleDateFinChange = (e)=> {
         setfechaFin(moment(e.target.value).format("YYYY-MM-DD[T]HH:mm"));
+    }  
+    // deshabilita el input de fecha fin hasta que se agrega un valor en input fecha inicio
+    const [disabled, setDisabled] = useState(true);
+    const handleSearch = () => {
+        if (!!fechaFin !== false && !!fechaFin !== false) {
+            dispatch(traerTickets(fechaInicio, fechaFin));
+        }
     }
-
-    // const handleDownloadFile = async () => {
-    //     console.log('click')
-    //     const resp = await fetch(`/api/ticket/download`);
-    //     const blob = await resp.blob();
-    //     const url = window.URL.createObjectURL(new Blob([blob]));
-    //     const link = document.createElement('a');
-    //     link.href = url;
-    //     link.setAttribute(
-    //         'download',
-    //         `FileName.png`,
-    //     );
-      
-    //     // Append to html link element page
-    //     document.body.appendChild(link);
-    
-    //     // Start download
-    //     link.click();
-    
-    //     // Clean up and remove the link
-    //     link.parentNode.removeChild(link);
-    // }
     return (
         <div className="admin__container">
-            <NavBar/>
+            {/* <NavBar/> */}
             <div className="filtro__container">
                 <div className="filtro-input">
                     <label htmlFor="fechaInicio">Desde</label>
@@ -67,15 +57,44 @@ export const AdminScreen = () => {
                         value={fechaFin} 
                         onChange={handleDateFinChange}
                         min={fechaInicio}
+                        disabled={disabled}
                     />
                 </div>
+                <div className="filtro-input">
+                    <button
+                        onClick={handleSearch}
+                    >
+                        Buscar
+                    </button>
+                </div>
             </div>
-            <TablaScreen fechaInicio={fechaInicio} fechaFin={fechaFin} />
-            <div className="input__container">
-                <button className="btn-block">
-                    Exportar
-                </button>
-            </div>
+            {
+                tickets && <TablaScreen tickets={tickets}/>
+            }
+            <button className="admin__btn">
+                Exportar
+            </button>
         </div>
     )
 }
+// const handleDownloadFile = async () => {
+    //     console.log('click')
+    //     const resp = await fetch(`/api/ticket/download`);
+    //     const blob = await resp.blob();
+    //     const url = window.URL.createObjectURL(new Blob([blob]));
+    //     const link = document.createElement('a');
+    //     link.href = url;
+    //     link.setAttribute(
+    //         'download',
+    //         `FileName.png`,
+    //     );
+      
+    //     // Append to html link element page
+    //     document.body.appendChild(link);
+    
+    //     // Start download
+    //     link.click();
+    
+    //     // Clean up and remove the link
+    //     link.parentNode.removeChild(link);
+    // }

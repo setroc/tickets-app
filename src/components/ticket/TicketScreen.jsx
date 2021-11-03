@@ -110,7 +110,7 @@ export const TicketScreen = () => {
 
     return (
         <div className="ticket__container">
-            <NavBar />
+            {/* <NavBar /> */}
             <form onSubmit={handleSubmit}>
                 <div className="input__container radio">
                     <Lugar lugar={lugar} setLugar={setLugar}/>
@@ -140,6 +140,7 @@ export const TicketScreen = () => {
                         <div className="input__container image">
                             <p className="input__p">Previsualización de la imagen seleccionada</p>
                             <img src={image} alt="imagen"/>
+                            {/* <div>X</div> */}
                         </div>
                     )
                 }
@@ -159,15 +160,6 @@ export const TicketScreen = () => {
                                     ))
                                 }
                             </ul>
-                            {/* <ul>
-                                {
-                                    Array.from(selectedFiles).map((file) => (
-                                        <li key={file.name} onClick={(e)=>{
-                                            console.log(e.target)
-                                        }}>{file.name}</li>
-                                    ))
-                                }
-                            </ul> */}
                         </div>
                     )
                 }

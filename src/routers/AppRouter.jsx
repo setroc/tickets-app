@@ -31,7 +31,7 @@ export const AppRouter = () => {
 
     return (
         <HashRouter>
-            <div>
+            <div className="app">
                 <Switch>
                     <PublicRoute 
                         exact 

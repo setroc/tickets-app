@@ -2,28 +2,62 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    border-spacing: 0;
-    thead {
-        width: 100%;
-    }
-    th {
-        font-size: 1.7rem;
-        font-weight: 400;
-        border: 1px solid $gray;
-        border-top: none;
-        background-color: lighten($color: $gray, $amount: 20%);
-    }
-    td {
-        font-size: 1.7rem;
-        text-align: center;
-        border: 1px solid lighten($color: $gray, $amount: 20%);
-        border-top: none;
-    }
+    // border-spacing: 0;
+    border-collapse: collapse;
+    box-sizing: border-box;
 
-    input[type="date"],
-    input[type="time"] {
-        border-bottom: none;
+    > {
+        thead {
+            width: 100%;
+            >  tr > {
+                
+                th {
+                    font-size: 1.5rem;
+                    border: 1px solid black;
+                    font-weight: normal;
+                }
+            }
+        }
+        tbody {
+            width: 100%;
+            > tr > {
+                td {
+                    border: 1px solid black;
+                    font-size: 1.5rem;
+                    text-align: center;
+                    height: 10px;
+                    // overflow: scroll;
+                    overflow: auto;
+                    input[type=datetime-local]{
+                        font-size: 1.5rem;
+                        border: 0;
+                        padding: 0;
+                    }
+                }
+                .mensaje {
+                    text-align: start;
+                    max-width: 100px;
+                }
+            }
+        }
     }
+    // thead {
+    //     width: 100%;
+    // }
+    // th {
+    //     font-size: 1.5rem;
+    //     font-weight: 400;
+    //     border: 1px solid $gray;
+    //     border-top: none;
+    //     background-color: lighten($color: $blue, $amount: 20%);
+    //     border: 1px solid black;
+    // }
+    // td {
+    //     font-size: 1.7rem;
+    //     text-align: center;
+    //     border: 1px solid lighten($color: $gray, $amount: 20%);
+    //     border-top: none;
+    // }
 }
 // .tabla_container {
 //     .titulos {

@@ -1,18 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router'
+import { NavBar } from '../components/navbar/NavBar';
 
 export const AdminRoute = ({isAuthenticated, component: Component, role, ...rest }) => {
 
     return (
-        <Route
-            {...rest}
-            component= {(props)=> (
-                (isAuthenticated && role==="ADMIN")
-                ? (<Component {...props} />)
-                : <Redirect to="/login" />
-            )}
-        />
+        <div className="Admin">
+            <NavBar />
+            <Route
+                {...rest}
+                component= {(props)=> (
+                    (isAuthenticated && role==="ADMIN")
+                    ? (<Component {...props} />)
+                    : <Redirect to="/login" />
+                )}
+            />
+        </div>
     )
 }
 AdminRoute.propTypes = {

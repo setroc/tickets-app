@@ -33,28 +33,27 @@ export const Item = ({ticket,i}) => {
     return (
         <tr>
             <td>{i+1}</td>
-            <td>{moment(new Date(fechaSolicitud)).format('L')}</td>
-            <td>{moment(new Date(fechaSolicitud)).format('LT')}</td>
+            <td>{moment(new Date(fechaSolicitud)).format("YYYY-MM-DD HH:mm")}</td>
             <td>
-                <input 
+                <input
+                    className="item__time"
                     type="datetime-local" 
                     name="inicio" 
                     value={inicio}
                     onChange={handleDateInicioChange}
-                    id="datetime-tabla"
                 />
             </td>
             <td>
-                <input 
+                <input
+                    className="item__time"
                     type="datetime-local" 
                     name="fin" 
                     value={fin}
                     onChange={handleDateFinChange}
-                    id="datetime-tabla"
                 />
             </td>
             <td>{usuarioNombre}</td>
-            <td>{mensaje}</td>
+            <td className="mensaje">{mensaje}</td>
             <td>{noFolio}</td>
         </tr>
     )

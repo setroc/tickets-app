@@ -16,8 +16,31 @@ export const NavBar = () => {
     }
     const {pathname} = useLocation();
     return (
-        <div className={`navbar__container ${(pathname === '/admin') ? 'navbar__container-admin' : ''}`} >
-            <div className="data__container">
+        <nav className={`navbar__container ${(pathname === '/admin') ? 'navbar__container-admin' : ''}`} >
+            <div className="navbar__left">
+                <img src={logo} alt="logo" className={`logo ${(pathname === '/admin') ? 'logo-admin' : ''}`}/>
+                <p>Bienvenido {nombre}</p>
+            </div>
+            <div className="navbar__right">
+                {   
+                    (role!=='USER') && (
+                        (role==="ADMIN" && pathname==='/') 
+                        ? (
+                            <Link to="/admin">Reportes</Link>
+                        )
+                        : (
+                            <Link to="/">Inicio</Link>
+                        )
+                    )
+                }
+                <button
+                    className="btn-logout btn-block"
+                    onClick={handleLogout}
+                >
+                    Salir
+                </button>
+            </div>
+            {/* <div className="data__container">
                 <img src={logo} alt="logo" className={`logo ${(pathname === '/admin') ? 'logo-admin' : ''}`}/>
                 <p>Bienvenido {nombre}</p>
             </div>
@@ -41,7 +64,7 @@ export const NavBar = () => {
                         Salir
                     </button>
                 </div>
-            </div>
-        </div>
+            </div> */}
+        </nav>
     )
 }

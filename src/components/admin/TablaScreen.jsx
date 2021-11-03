@@ -1,35 +1,34 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import { Item } from './Item'
-import { traerTickets } from '../../actions/ticket';
 
 
-export const TablaScreen = ({fechaInicio, fechaFin}) => {
+// export const TablaScreen = ({fechaInicio, fechaFin}) => {
+export const TablaScreen = ({tickets}) => {
 
-    const {tickets} = useSelector(state => state.ticket);
+    // const {tickets} = useSelector(state => state.ticket);
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (!!fechaFin !== false && !!fechaFin !== false) {
-            dispatch(traerTickets(fechaInicio, fechaFin));
-        }
-    }, [dispatch, fechaInicio, fechaFin])
+    // useEffect(() => {
+    //     if (!!fechaFin !== false && !!fechaFin !== false) {
+    //         dispatch(traerTickets(fechaInicio, fechaFin));
+    //     }
+    // }, [dispatch, fechaInicio, fechaFin])
 
 
     return (
         <table className="tabla_container">
             <thead>
                 <tr>
-                    <th>No.</th>
-                    <th>Fecha Solicitud</th>
-                    <th>Hora Solicitud</th>
-                    <th>Fecha y Hora Inicio</th>
+                    <th>#</th>
+                    <th>Fecha y hora solicitud</th>
+                    {/* <th>Hora Solicitud</th> */}
+                    <th>Fecha y hora inicio</th>
                     {/* <th>Hora Inicio</th> */}
-                    <th>Fecha y Hora Fin</th>
+                    <th>Fecha y hora fin</th>
                     {/* <th>Hora Fin</th> */}
                     <th>Solicito</th>
-                    <th>Solicitud</th>
+                    <th>Mensaje</th>
                     <th>Número de Folio</th>
                 </tr>
             </thead>
