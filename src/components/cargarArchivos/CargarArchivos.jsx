@@ -1,6 +1,5 @@
 const CargarArchivos = ({setSelectedFiles, setLimitSize}) => {
     const handleFilesChange = (e) => {
-        console.log(e.target.files)
         if (e.target.files?.length > 0) {
             setSelectedFiles(Array.from(e.target.files));
             for (let i = 0; i<e.target.files.length;i++) {

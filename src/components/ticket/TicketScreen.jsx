@@ -93,14 +93,14 @@ export const TicketScreen = () => {
         formData.append('message', text.replaceAll('<','(').replaceAll('>',')'));
         formData.append('fechaSolicitud',Date());
         formData.append('lugar',lugar);
-        formData.append('tipo',tipo);
+        formData.append('categoria',tipo);
 
         dispatch( solicitarTicket(formData) );
 
         reset();
         setSelectedImage(null);
         setImage(null);
-        setSelectedFiles(null);
+        setSelectedFiles([]);
         setLugar('cat');
         setTipo('solicitud');
     }   
@@ -139,12 +139,11 @@ export const TicketScreen = () => {
                         <div className="input__container image">
                             <p className="input__p">Previsualización de la imagen seleccionada</p>
                             <img src={image} alt="imagen"/>
-                            {/* <div>X</div> */}
                         </div>
                     )
                 }
                 {
-                    (selectedFiles.length > 0) && (
+                    (selectedFiles.length !== 0) && (
                         <div className="input__container image">
                             <p className="input__p">Archivos seleccionados</p>
                             <ul>
