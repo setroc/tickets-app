@@ -4,7 +4,6 @@ import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { TablaScreen } from './TablaScreen'
-import { NavBar } from './../navbar/NavBar';
 import { traerTickets } from '../../actions/ticket';
 
 moment.locale('es-mx');
@@ -12,6 +11,7 @@ const initialValues = {
     inicio : moment().set({hour:0, minute:0}).format("YYYY-MM-DD[T]HH:mm"),
     fin: moment().set({hour:23,minute:59}).format("YYYY-MM-DD[T]HH:mm")
 }
+
 export const AdminScreen = () => {
     const {tickets} = useSelector(state => state.ticket);
     const dispatch = useDispatch();
@@ -61,6 +61,10 @@ export const AdminScreen = () => {
                     />
                 </div>
                 <div className="filtro-input">
+                    {/* <label htmlFor="cat">CAT</label>
+                    <input type="radio" name="lugar" id="lugar"  value="cat"/>
+                    <label htmlFor="cat">Consejo</label>
+                    <input type="radio" name="lugar" id="lugar"  value="consejo"/> */}
                     <button
                         onClick={handleSearch}
                     >
@@ -69,11 +73,11 @@ export const AdminScreen = () => {
                 </div>
             </div>
             {
-                tickets && <TablaScreen tickets={tickets}/>
+                tickets && <TablaScreen tickets={tickets} />
             }
-            <button className="admin__btn">
+            {/* <button className="admin__btn">
                 Exportar
-            </button>
+            </button> */}
         </div>
     )
 }

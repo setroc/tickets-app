@@ -11,7 +11,6 @@ import Tipo from '../tipo/Tipo';
 import Reporte from './../reporte/Reporte';
 import CargarArchivos from '../cargarArchivos/CargarArchivos';
 import CargarImagen from '../cargarImagen/CargarImagen';
-import { NavBar } from './../navbar/NavBar';
 import ArchivoItem from '../archivoItem/ArchivoItem';
 
 export const TicketScreen = () => { 

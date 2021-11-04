@@ -70,7 +70,7 @@ const ticketsCargados = (tickets) => ({
     payload:  tickets
 })
 
-export const actualizarFecha = (ticket) => {
+export const actualizarTicket = (ticket) => {
     return async(dispatch) => {
         try {
             const resp = await fetch(`/api/ticket/${ticket._id}`,{
@@ -82,7 +82,7 @@ export const actualizarFecha = (ticket) => {
             })
             const body = await resp.json();
             if (body.ok) {
-                dispatch(fechaActualizada(ticket))
+                dispatch(ticketActualizado(ticket))
             }else {
                 Swal.fire('Error', body.msg, 'error');
             }
@@ -91,7 +91,7 @@ export const actualizarFecha = (ticket) => {
         }
     }
 }
-const fechaActualizada = (ticket) => ({
+const ticketActualizado = (ticket) => ({
     type: types.ticketActualizado,
     payload: ticket
 })

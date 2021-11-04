@@ -1,21 +1,7 @@
 import React from 'react'
 import { Item } from './Item'
 
-
-// export const TablaScreen = ({fechaInicio, fechaFin}) => {
-export const TablaScreen = ({tickets}) => {
-
-    // const {tickets} = useSelector(state => state.ticket);
-
-    // const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     if (!!fechaFin !== false && !!fechaFin !== false) {
-    //         dispatch(traerTickets(fechaInicio, fechaFin));
-    //     }
-    // }, [dispatch, fechaInicio, fechaFin])
-
-
+export const TablaScreen = ({tickets, setTickets}) => {
     return (
         <table className="tabla_container">
             <thead>
@@ -27,45 +13,26 @@ export const TablaScreen = ({tickets}) => {
                     {/* <th>Hora Inicio</th> */}
                     <th>Fecha y hora fin</th>
                     {/* <th>Hora Fin</th> */}
-                    <th>Solicito</th>
-                    <th>Mensaje</th>
+                    <th>Horario</th>
                     <th>Número de Folio</th>
+                    <th>Categoría</th>
+                    <th>RMA</th>
+                    <th>Atención</th>
+                    <th>Estatus</th>
+                    <th>Severidad</th>
+                    <th>SLA</th>
+                    {/* <th>Solicito</th>
+                    <th>Mensaje</th> */}
+                    <th>Editar</th>
                 </tr>
             </thead>
             <tbody>
                 {
                     tickets && tickets.map((ticket,i) => {
-                        return <Item ticket={ticket} key={ticket._id} i={i}/>
+                        return <Item ticket={ticket} key={ticket._id} i={i} setTickets={setTickets}/>
                     })
                 }
             </tbody>
         </table>
-        // <div className="tabla_container">
-        //     <ul className="titulos">
-        //         <li>No.</li>
-        //         <li>Fecha Solicitud</li>
-        //         <li>Hora Solicitud</li>
-        //         <li>Fecha Inicio</li>
-        //         <li>Hora Inicio</li>
-        //         <li>Fecha Fin</li>
-        //         <li>Hora Fin</li>
-        //         <li>Solicito</li>
-        //         <li>Solicitud</li>
-        //         <li>Número de Folio</li>
-        //     </ul>
-
-        //     <ul className="item">
-        //         <li>1</li>
-        //         <li>10/05/2021</li>
-        //         <li>08:30</li>
-        //         <li>10/05/2021</li>
-        //         <li>08:30</li>
-        //         <li>10/05/2021</li>
-        //         <li>08:30</li>
-        //         <li>Jorge Mejía</li>
-        //         <li>Cambiar de hardphone a softphone el usuario (sperez) con extensión (1582)</li>
-        //         <li>10052021-01</li>
-        //     </ul>
-        // </div>
     )
 }
