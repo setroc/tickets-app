@@ -12,6 +12,7 @@ import Reporte from './../reporte/Reporte';
 import CargarArchivos from '../cargarArchivos/CargarArchivos';
 import CargarImagen from '../cargarImagen/CargarImagen';
 import ArchivoItem from '../archivoItem/ArchivoItem';
+import ArchivoImagen from './../archivoImagen/ArchivoImagen';
 
 export const TicketScreen = () => { 
 
@@ -36,6 +37,12 @@ export const TicketScreen = () => {
         setSelectedFiles(selectedFiles.filter((file) => {
             return (file.name !== name) && file  
         }));
+    }
+    //borrar imagen
+    const onDeleteImage = () => {
+        setLimitSize((prevSate) => (prevSate + selectedImage.size));
+        setSelectedImage(null);
+        setImage(null);
     }
     const validarFormulario = () => {
         //valido que el mensaje no este vacio
@@ -138,7 +145,12 @@ export const TicketScreen = () => {
                     image && (
                         <div className="input__container image">
                             <p className="input__p">Previsualización de la imagen seleccionada</p>
-                            <img src={image} alt="imagen"/>
+                            {/* <img src={image} alt="imagen"/> */}
+                            <ArchivoImagen 
+                                image={image} 
+                                alt={selectedImage.name}
+                                onDeleteImage={onDeleteImage}
+                            />
                         </div>
                     )
                 }
@@ -152,7 +164,7 @@ export const TicketScreen = () => {
                                         <ArchivoItem 
                                             key={file.name}
                                             nombre={file.name}
-                                            tam={file.size}
+                                            tam={file.size*0.001}
                                             onDeleteFile={() => onDeleteFile(file.name, file.size)}
                                         />
                                     ))

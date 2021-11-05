@@ -3,7 +3,7 @@ const ArchivoItem = ({nombre, tam, onDeleteFile}) => {
         <li className="fileItem">
             <div className="fileItem__datos">
                 <p>{nombre}</p>
-                <p>{tam} bytes</p>
+                <p>{tam} KB</p>
             </div>
             <span
                 className="fileItem__delete"

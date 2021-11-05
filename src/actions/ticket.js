@@ -55,8 +55,12 @@ const ticketSolicitado = ()=> ({
 export const traerTickets = (fechaInicio, fechaFin) => {
     return async(dispatch) => {
         try {
+            const token = localStorage.getItem('token') || '';
             const resp = await fetch(`/api/ticket?desde=${fechaInicio}&hasta=${fechaFin}`,{
                 method: 'GET',
+                headers: {
+                    'x-token' : token
+                }
             });
             const body = await resp.json();
             dispatch(ticketsCargados(body.tickets));

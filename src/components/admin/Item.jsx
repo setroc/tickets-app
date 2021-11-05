@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { actualizarTicket } from '../../actions/ticket';
 import 'moment/locale/es-mx';
+import Swal  from 'sweetalert2';
+
 import useSelectForm from '../../hooks/useSelectForm';
 
 export const Item = ({ ticket, i, setTickets }) => {
@@ -39,31 +41,54 @@ export const Item = ({ ticket, i, setTickets }) => {
         setEditar(false);
     }
     const validarCampos = () => {
-        if (fechaSolicitud > inicio ) {
-            console.log('La fecha de inicio no puede ser menor a la de solicitud');
+        if (moment(fechaSolicitud).format("YYYY-MM-DD[T]HH:mm") > inicio ) {
+            Swal.fire({
+                title: "La fecha de inicio no puede ser menor a la de solicitud",
+                icon: "error",
+                showCancelButton: false,
+                showConfirmButton: true,
+                confirmButtonColor: "#4796ff"
+            });
+            return false;
         }
-        if (fechaSolicitud > fin ) {
-            console.log('La fecha de fin no puede ser menor a la de solicitud');
+        if (moment(fechaSolicitud).format("YYYY-MM-DD[T]HH:mm") > fin ) {
+            Swal.fire({
+                title: "La fecha de fin no puede ser menor a la de solicitud",
+                icon: "error",
+                showCancelButton: false,
+                showConfirmButton: true,
+                confirmButtonColor: "#4796ff"
+            });
+            return false;
         }
         if (inicio > fin) {
-            console.log('La fecha de inicio no puede ser mayor a la de fin');
+            Swal.fire({
+                title: "La fecha de inicio no puede ser mayor a la de fin",
+                icon: "error",
+                showCancelButton: false,
+                showConfirmButton: true,
+                confirmButtonColor: "#4796ff"
+            });
+            return false;
         }
+        return true;
     }
     const handleGuardar = () => {
-        validarCampos();
-        setEditar(true);
-        dispatch(actualizarTicket({
-            ...ticket, 
-            fechaAtencion: inicio, 
-            fechaFin: fin,
-            horario,
-            categoria,
-            rma,
-            atencion,
-            estatus,
-            severidad,
-            sla
-        }));
+        if ( validarCampos() ) {
+            setEditar(true);
+            dispatch(actualizarTicket({
+                ...ticket, 
+                fechaAtencion: inicio, 
+                fechaFin: fin,
+                horario,
+                categoria,
+                rma,
+                atencion,
+                estatus,
+                severidad,
+                sla
+            }));
+        }
     }
 
     return (
@@ -114,7 +139,7 @@ export const Item = ({ ticket, i, setTickets }) => {
                     onChange={handleCategoria}
                 >
                     <option value="solicitud">Solicitud</option>
-                    <option value="indicente">Incidente</option>
+                    <option value="incidente">Incidente</option>
                     <option value="mantenimiento">Mantenimiento</option>
                     <option value="monitoreo">Monitoreo</option>
                     <option value="rma">RMA</option>
