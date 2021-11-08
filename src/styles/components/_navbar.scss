@@ -25,15 +25,15 @@
 }
 .navbar__right {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
     align-items: center;
-    justify-items: center;
+    justify-content: end;
     > a {
         font-size: 2rem;
         color: white;
         text-decoration: none;
     }
-    > button {
+    > .btn-logout.btn-block {
         border: none;
         background-color: transparent;
         font-size: 2rem;

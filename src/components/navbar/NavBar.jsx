@@ -1,11 +1,12 @@
 import React from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import { startLogout } from '../../actions/auth';
 
 import logo from '../../assets/logo.png';
+import MenuAdmin from './MenuAdmin';
 
 export const NavBar = () => {
 
@@ -16,29 +17,35 @@ export const NavBar = () => {
     }
     const {pathname} = useLocation();
     return (
-        <nav className={`navbar__container ${(pathname === '/admin') ? 'navbar__container-admin' : ''}`} >
+        <nav className={`navbar__container ${(pathname === '/admin' || pathname === '/register') ? 'navbar__container-admin' : ''}`} >
             <div className="navbar__left">
                 <img src={logo} alt="logo" className={`logo ${(pathname === '/admin') ? 'logo-admin' : ''}`}/>
                 <p>Bienvenido {nombre}</p>
             </div>
             <div className="navbar__right">
                 {   
-                    (role!=='USER') && (
-                        (role==="ADMIN" && pathname==='/') 
-                        ? (
-                            <Link to="/admin">Reportes</Link>
-                        )
-                        : (
-                            <Link to="/">Inicio</Link>
-                        )
+                    (role==="ADMIN") 
+                    ? (
+                        <MenuAdmin />
                     )
+                    : (
+                        <button
+                            className="btn-logout btn-block"
+                            onClick={handleLogout}
+                        >
+                            Salir
+                        </button>
+                    )
+                    // (role!=='USER') && (
+                    //     (role==="ADMIN" && pathname==='/') 
+                    //     ? (
+                    //         <Link to="/admin">Reportes</Link>
+                    //     )
+                    //     : (
+                    //         <Link to="/">Inicio</Link>
+                    //     )
+                    // )
                 }
-                <button
-                    className="btn-logout btn-block"
-                    onClick={handleLogout}
-                >
-                    Salir
-                </button>
             </div>
             {/* <div className="data__container">
                 <img src={logo} alt="logo" className={`logo ${(pathname === '/admin') ? 'logo-admin' : ''}`}/>

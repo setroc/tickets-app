@@ -26,7 +26,7 @@ export const RegisterScreen = () => {
         dispatch(startRegister(nombre,email,password));
     }
     return (
-        <div className="login__container">
+        <div className="login__container register">
             <h1>Registrar Ususario</h1>
             <form onSubmit={handleSubmit}>
             <div className="input__container">
@@ -34,7 +34,7 @@ export const RegisterScreen = () => {
                     <input 
                         type="text"
                         name="nombre"
-                        placeholder="usuario@domino.com"
+                        placeholder="usuario"
                         autoComplete="off"
                         value={nombre}
                         onChange={handleInputChange}
@@ -78,7 +78,7 @@ export const RegisterScreen = () => {
                         className="btn-block btn-login"
                         type="submit"
                     >
-                        Registrarme
+                        Registrar
                     </button>
                 </div>
             </form>

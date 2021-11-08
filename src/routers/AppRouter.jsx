@@ -39,18 +39,19 @@ export const AppRouter = () => {
                         component={ LoginScreen }
                         isAuthenticated={!!uid}
                     />
-                    <PublicRoute 
-                        exact 
-                        path="/register" 
-                        component={ RegisterScreen }
-                        isAuthenticated={!!uid}
-                    />
                     <PrivateRoute
                         exact 
                         path="/" 
                         component={TicketScreen}
                         isAuthenticated={!!uid}
                     /> 
+                    <AdminRoute 
+                        exact 
+                        path="/register" 
+                        component={ RegisterScreen }
+                        isAuthenticated={!!uid}
+                        role={role}
+                    />
                     <AdminRoute
                         exact 
                         path="/admin" 
