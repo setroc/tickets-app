@@ -67,12 +67,18 @@ export const startRegister = (nombre, email, password)=> {
         })
         const body = await resp.json();
         if (body.ok) {
-            localStorage.setItem('token', body.token);
-            const {nombre, uid} = body.usuario;
-            dispatch(login({
-                nombre,
-                uid
-            }))
+            const {nombre} = body.usuario;
+            Swal.fire({
+                title: 'Usuario creado con exito',
+                html: `El usuario ${nombre} se ha creado exitosamente`,
+                icon: 'success',
+                allowOutsideClick: true,
+                showCancelButton: false,
+                showConfirmButton: true,
+                // timer: 2500,
+                backdrop:true,
+                confirmButtonColor: "#4796ff"
+            })
         }else {
             Swal.fire('Error', body.msg, 'error');
         }

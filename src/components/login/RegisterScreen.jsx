@@ -5,15 +5,16 @@ import Swal  from 'sweetalert2';
 import { startRegister } from '../../actions/auth';
 import { useForm } from './../../hooks/useForm';
 
+const initialFormState = {
+    email: '',
+    nombre: '',
+    password: '',
+    password2: ''
+}
 
 export const RegisterScreen = () => {
 
-    const [formValues, handleInputChange] = useForm({
-        email: '',
-        nombre: '',
-        password: '',
-        password2: ''
-    });
+    const [formValues, handleInputChange, reset] = useForm(initialFormState);
     const {email,nombre,password,password2} = formValues;
 
     const dispatch = useDispatch();
@@ -24,6 +25,7 @@ export const RegisterScreen = () => {
             Swal.fire('Error', 'Las contraseñas no son iguales', 'error');
         }
         dispatch(startRegister(nombre,email,password));
+        reset();
     }
     return (
         <div className="login__container register">
