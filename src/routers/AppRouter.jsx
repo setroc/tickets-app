@@ -14,6 +14,7 @@ import { startChecking } from '../actions/auth';
 import { RegisterScreen } from '../components/login/RegisterScreen';
 import { AdminScreen } from '../components/admin/AdminScreen';
 import { AdminRoute } from './AdminRoute';
+import Cuenta from '../components/cuenta/Cuenta';
 
 export const AppRouter = () => {
 
@@ -43,6 +44,12 @@ export const AppRouter = () => {
                         exact 
                         path="/" 
                         component={TicketScreen}
+                        isAuthenticated={!!uid}
+                    /> 
+                    <PrivateRoute
+                        exact 
+                        path="/cuenta" 
+                        component={Cuenta}
                         isAuthenticated={!!uid}
                     /> 
                     <AdminRoute 

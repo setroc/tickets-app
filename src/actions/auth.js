@@ -115,3 +115,38 @@ export const startChecking = () => {
 const checkingFinish = () => ({
     type: types.authCheckingFinish
 })
+
+export const startUpdatePass = (pass, npass)=> {
+    return async(dispatch) => {
+        const data = { password: pass, npassword: npass};
+        const token = localStorage.getItem('token') || '';
+        const resp = await fetch(`/api/auth/update`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json',
+                'x-token':token
+            },
+            body: JSON.stringify(data)
+        });
+        const body = await resp.json();
+        if (body.ok) {
+            Swal.fire({
+                title: `${body.msg}`,
+                icon: 'success',
+                allowOutsideClick: true,
+                showCancelButton: false,
+                showConfirmButton: true,
+                timer: 3500,
+                backdrop:true,
+                confirmButtonColor: "#4796ff"
+            })
+            dispatch(updatePass())
+        }else {
+            Swal.fire('Error', body.msg, 'error');
+        }
+
+    }
+}
+const updatePass = () => ({
+    type: types.authUpdatePass
+})

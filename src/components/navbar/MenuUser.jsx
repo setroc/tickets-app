@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+
 import BugerMenu from './BugerMenu';
 
-const MenuAdmin = () => {
+const MenuUser = () => {
     const [menu, setMenu] = useState(false);
     const handleMenu = () => {
         setMenu(!menu);
     }
     return (
-        <div className="menuAdmin">
+        <div className="menuAdmin user">
             <i 
-                class="fas fa-bars"
+                className="fas fa-bars"
                 onClick={handleMenu}
             ></i>
             {
@@ -23,16 +24,10 @@ const MenuAdmin = () => {
                             Inicio
                         </Link>
                         <Link 
-                            to="/admin"
+                            to="/cuenta"
                             onClick={handleMenu}
                         >
-                            Reportes
-                        </Link>
-                        <Link 
-                            to="/register"
-                            onClick={handleMenu}
-                        >
-                            Registrar
+                            Mi cuenta
                         </Link>
                     </BugerMenu>
                 )
@@ -41,4 +36,4 @@ const MenuAdmin = () => {
     )
 }
 
-export default MenuAdmin
+export default MenuUser

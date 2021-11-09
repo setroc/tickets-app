@@ -1,21 +1,18 @@
 import React from 'react'
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom'
 
-import { startLogout } from '../../actions/auth';
 
 import logo from '../../assets/logo.png';
 import MenuAdmin from './MenuAdmin';
+import MenuUser from './MenuUser';
 
 export const NavBar = () => {
 
     const {nombre, role} = useSelector(state => state.auth);
-    const dispatch = useDispatch();
-    const handleLogout = ()=> {
-        dispatch(startLogout());
-    }
     const {pathname} = useLocation();
+
     return (
         <nav className={`navbar__container ${(pathname === '/admin' || pathname === '/register') ? 'navbar__container-admin' : ''}`} >
             <div className="navbar__left">
@@ -29,49 +26,10 @@ export const NavBar = () => {
                         <MenuAdmin />
                     )
                     : (
-                        <button
-                            className="btn-logout btn-block"
-                            onClick={handleLogout}
-                        >
-                            Salir
-                        </button>
+                        <MenuUser />
                     )
-                    // (role!=='USER') && (
-                    //     (role==="ADMIN" && pathname==='/') 
-                    //     ? (
-                    //         <Link to="/admin">Reportes</Link>
-                    //     )
-                    //     : (
-                    //         <Link to="/">Inicio</Link>
-                    //     )
-                    // )
-                }
+                }   
             </div>
-            {/* <div className="data__container">
-                <img src={logo} alt="logo" className={`logo ${(pathname === '/admin') ? 'logo-admin' : ''}`}/>
-                <p>Bienvenido {nombre}</p>
-            </div>
-            <div className="data__container">
-                <div className="buttons">
-                    {   
-                        (role!=='USER') && (
-                            (role==="ADMIN" && pathname==='/') 
-                            ? (
-                                <Link to="/admin">Reportes</Link>
-                            )
-                            : (
-                                <Link to="/">Inicio</Link>
-                            )
-                        )
-                    }
-                    <button
-                        className="btn-logout btn-block"
-                        onClick={handleLogout}
-                    >
-                        Salir
-                    </button>
-                </div>
-            </div> */}
         </nav>
     )
 }

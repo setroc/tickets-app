@@ -5,6 +5,7 @@ export const types = {
     authStartRegister: '[auth] Start register',
     authStarTokenRenew: '[auth] Start token renew',
     authLogout: '[auth] Logout',
+    authUpdatePass: '[auth] Pass updated',
 
     ticketSolicitarTicket: '[ticket] Solcitando nuevo ticket',
     ticketSolicitado: '[ticket] Solicitado',

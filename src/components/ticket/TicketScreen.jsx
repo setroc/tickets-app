@@ -116,7 +116,6 @@ export const TicketScreen = () => {
 
     return (
         <div className="ticket__container">
-            {/* <NavBar /> */}
             <form onSubmit={handleSubmit}>
                 <div className="input__container radio">
                     <Lugar lugar={lugar} setLugar={setLugar}/>
