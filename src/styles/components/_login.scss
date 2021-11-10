@@ -35,10 +35,19 @@
 }
 .login__container.register {
     border-radius: 0;
-    width: 100%;
+    width: 800px;
     box-sizing: border-box;
     justify-content: center;
+    height: auto;
+    border-radius: 0 0 10px 10px;
+    > h2 {
+        width: 90%;
+        margin: 0 auto;
+        font-weight: normal;
+        margin-bottom: 5px;
+        text-align: center;
+    }
     .input__container {
-        width: 50%;
+        width: 90%;
     }
 }

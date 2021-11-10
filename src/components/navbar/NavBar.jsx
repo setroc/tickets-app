@@ -14,7 +14,7 @@ export const NavBar = () => {
     const {pathname} = useLocation();
 
     return (
-        <nav className={`navbar__container ${(pathname === '/admin' || pathname === '/register') ? 'navbar__container-admin' : ''}`} >
+        <nav className={`navbar__container ${(pathname === '/admin') ? 'navbar__container-admin' : ''}`} >
             <div className="navbar__left">
                 <img src={logo} alt="logo" className={`logo ${(pathname === '/admin') ? 'logo-admin' : ''}`}/>
                 <p>Bienvenido {nombre}</p>

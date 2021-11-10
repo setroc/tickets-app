@@ -29,7 +29,7 @@ export const RegisterScreen = () => {
     }
     return (
         <div className="login__container register">
-            <h1>Registrar Ususario</h1>
+            <h2>Registrar Ususario</h2>
             <form onSubmit={handleSubmit}>
             <div className="input__container">
                     <label htmlFor="nombre">Ingresar nombre</label>

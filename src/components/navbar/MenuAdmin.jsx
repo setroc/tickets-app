@@ -10,7 +10,7 @@ const MenuAdmin = () => {
     return (
         <div className="menuAdmin">
             <i 
-                class="fas fa-bars"
+                className="fas fa-bars"
                 onClick={handleMenu}
             ></i>
             {
@@ -33,6 +33,12 @@ const MenuAdmin = () => {
                             onClick={handleMenu}
                         >
                             Registrar
+                        </Link>
+                        <Link 
+                            to="/cuenta"
+                            onClick={handleMenu}
+                        >
+                            Mi cuenta
                         </Link>
                     </BugerMenu>
                 )

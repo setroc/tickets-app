@@ -36,7 +36,6 @@ export const AdminScreen = () => {
     }
     return (
         <div className="admin__container">
-            {/* <NavBar/> */}
             <div className="filtro__container">
                 <div className="filtro-input">
                     <label htmlFor="fechaInicio">Desde</label>

@@ -6,7 +6,7 @@ import { NavBar } from '../components/navbar/NavBar';
 export const AdminRoute = ({isAuthenticated, component: Component, role, ...rest }) => {
 
     return (
-        <div className="Admin">
+        <>
             <NavBar />
             <Route
                 {...rest}
@@ -16,7 +16,7 @@ export const AdminRoute = ({isAuthenticated, component: Component, role, ...rest
                     : <Redirect to="/login" />
                 )}
             />
-        </div>
+        </>
     )
 }
 AdminRoute.propTypes = {
