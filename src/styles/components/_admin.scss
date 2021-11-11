@@ -33,6 +33,22 @@
             &:last-of-type {
                 justify-content: end;
             }
+            .radio {
+                display: flex;
+                justify-content: space-between;
+                // margin-bottom: 10px;
+            }
+            .btn-login {
+                background-color: $blue;
+                border: none;
+                color: white;
+                border-radius: 10px;
+                margin-bottom: 0;
+                transition: color .5s ease-in-out;
+                &:hover {
+                    background-color: darken($color: $blue, $amount: 5);
+                }
+            }
         }
 
         // .filtro-input {

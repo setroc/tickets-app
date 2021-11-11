@@ -15,23 +15,26 @@ const initialValues = {
 export const AdminScreen = () => {
     const {tickets} = useSelector(state => state.ticket);
     const dispatch = useDispatch();
-
+    //fechas
     const [fechaInicio, setFechaInicio] = useState(initialValues.inicio);
-    // const [fechaInicio, setFechaInicio] = useState('');
     const handleDateInicioChange = (e)=> {
         setFechaInicio(moment(e.target.value).format("YYYY-MM-DD[T]HH:mm"));
         setDisabled(false);
     }
     const [fechaFin, setfechaFin] = useState(initialValues.fin);
-    // const [fechaFin, setfechaFin] = useState('');
     const handleDateFinChange = (e)=> {
         setfechaFin(moment(e.target.value).format("YYYY-MM-DD[T]HH:mm"));
-    }  
+    }
+    //input radio
+    const [lugar, setLugar] = useState('cat');
+    const handleRadioLugarChange = (e)=> {
+        setLugar(e.target.value);
+    }
     // deshabilita el input de fecha fin hasta que se agrega un valor en input fecha inicio
     const [disabled, setDisabled] = useState(true);
     const handleSearch = () => {
         if (!!fechaFin !== false && !!fechaFin !== false) {
-            dispatch(traerTickets(fechaInicio, fechaFin));
+            dispatch(traerTickets(fechaInicio, fechaFin, lugar));
         }
     }
     return (
@@ -60,12 +63,29 @@ export const AdminScreen = () => {
                     />
                 </div>
                 <div className="filtro-input">
-                    {/* <label htmlFor="cat">CAT</label>
-                    <input type="radio" name="lugar" id="lugar"  value="cat"/>
-                    <label htmlFor="cat">Consejo</label>
-                    <input type="radio" name="lugar" id="lugar"  value="consejo"/> */}
+                    <div className="radio">
+                        <label htmlFor="cat">CAT</label>
+                        <input 
+                            type="radio" 
+                            name="lugar" 
+                            id="cat"  
+                            value="cat"
+                            checked={lugar === 'cat' ? true : false}
+                            onChange={handleRadioLugarChange}
+                        />
+                        <label htmlFor="consejo">Consejo</label>
+                        <input 
+                            type="radio" 
+                            name="lugar" 
+                            id="consejo"  
+                            value="consejo"
+                            checked={lugar === 'consejo' ? true : false}
+                            onChange={handleRadioLugarChange}
+                        />
+                    </div>
                     <button
                         onClick={handleSearch}
+                        className="btn-block btn-login"
                     >
                         Buscar
                     </button>

@@ -52,11 +52,11 @@ const ticketSolicitado = ()=> ({
     type: types.ticketSolicitado
 })
 
-export const traerTickets = (fechaInicio, fechaFin) => {
+export const traerTickets = (fechaInicio, fechaFin, lugar) => {
     return async(dispatch) => {
         try {
             const token = localStorage.getItem('token') || '';
-            const resp = await fetch(`/api/ticket?desde=${fechaInicio}&hasta=${fechaFin}`,{
+            const resp = await fetch(`/api/ticket?desde=${fechaInicio}&hasta=${fechaFin}&lugar=${lugar}`,{
                 method: 'GET',
                 headers: {
                     'x-token' : token
