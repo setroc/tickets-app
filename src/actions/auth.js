@@ -27,7 +27,17 @@ export const startLogin = (email, password) => {
                 role
             }))
         }else {
-            Swal.fire('Error', body.msg, 'error');
+            Swal.fire({
+                title: body.msg,
+                html: `En caso de olvidarlos, por favor contacte al administrador del sistema.`,
+                icon: 'error',
+                allowOutsideClick: true,
+                showCancelButton: false,
+                showConfirmButton: true,
+                // timer: 2500,
+                backdrop:true,
+                confirmButtonColor: "#4796ff"
+            });
         }
     }
 }
