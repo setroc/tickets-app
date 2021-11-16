@@ -24,7 +24,7 @@ const Cuenta = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors(validateInfo(values));
-        if ( Object.keys(errors).length === 0 ) { //Formulario valido
+        if ( Object.keys(errors).length === 0 && values !== initialValues ) { //Formulario valido
             dispatch(startUpdatePass(password, npassword));
         }
         setValues(initialValues);
