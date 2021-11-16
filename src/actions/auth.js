@@ -149,8 +149,11 @@ export const startUpdatePass = (pass, npass)=> {
                 timer: 3500,
                 backdrop:true,
                 confirmButtonColor: "#4796ff"
-            })
-            dispatch(updatePass())
+            });
+            dispatch(updatePass());
+            setTimeout(()=>{
+                dispatch(startLogout());
+            },4000);
         }else {
             Swal.fire('Error', body.msg, 'error');
         }
