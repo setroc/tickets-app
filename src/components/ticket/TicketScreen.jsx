@@ -1,175 +1,73 @@
-import React, { useState } from 'react'
-import Swal from 'sweetalert2';
-import { useDispatch } from 'react-redux';
+import React from 'react'
 
-import { useForm } from './../../hooks/useForm';
-
-import { solicitarTicket } from '../../actions/ticket';
-
-import Lugar from '../lugar/Lugar';
-import Tipo from '../tipo/Tipo';
 import Reporte from './../reporte/Reporte';
-import CargarArchivos from '../cargarArchivos/CargarArchivos';
-import CargarImagen from '../cargarImagen/CargarImagen';
-import ArchivoItem from '../archivoItem/ArchivoItem';
-import ArchivoImagen from './../archivoImagen/ArchivoImagen';
+import useFormTicket from './../../hooks/useFormTicket';
+import Servicio from '../servicio/Servicio';
+import Cargar from '../cargar/Cargar';
+import Imagen from '../imagen/Imagen';
+import Archivos from '../archivos/Archivos';
 
 export const TicketScreen = () => { 
-
-    const dispatch = useDispatch();
-    //estado que cuenta el tamaño de los archivos seleecionados tanto de la imagen como los archivos, no debe ser mayor a 10MB
-    const [limitSize, setLimitSize] = useState(10 * 1024 * 1024);
-    //estado del texto ingresado
-    const [formValues, handleInputChange, reset] = useForm({
-        text: ''
-    })
-    const {text} = formValues;
-    //estado de los input radio
-    const [lugar, setLugar] = useState('cat');
-    const [tipo, setTipo] = useState('solicitud');
-    //estado de imagen y archvios subidos
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [image, setImage] = useState(null);
-    const [selectedFiles, setSelectedFiles] = useState([]);
-    //borrar archivo
-    const onDeleteFile = (name, size) => {
-        setLimitSize((prevSate) => (prevSate + size));
-        setSelectedFiles(selectedFiles.filter((file) => {
-            return (file.name !== name) && file  
-        }));
-    }
-    //borrar imagen
-    const onDeleteImage = () => {
-        setLimitSize((prevSate) => (prevSate + selectedImage.size));
-        setSelectedImage(null);
-        setImage(null);
-    }
-    const validarFormulario = () => {
-        //valido que el mensaje no este vacio
-        if (text.length === 0) {
-            return false;
-        }
-        return true;
-    }
+    const {
+        lugar, 
+        setLugar, 
+        tipo, 
+        setTipo, 
+        textArea:text, 
+        handleTextAreaChange:handleInputChange,
+        selectedImage,
+        setSelectedImage,
+        image,
+        setImage,
+        selectedFiles,
+        setSelectedFiles,
+        onDeleteFile,
+        onDeleteImage,
+        setLimitSize,
+        submit
+    } = useFormTicket();
 
     const handleSubmit = (e)=> {
         e.preventDefault();
-
-        if ( !validarFormulario() ) {
-            Swal.fire({
-                title: "Es necesario incluir explicación en la solicitud",
-                icon: "error",
-                showCancelButton: false,
-                showConfirmButton: true,
-                confirmButtonColor: "#4796ff"
-            })
-            return;
-        }
-
-        if (limitSize <= 0) {
-            Swal.fire({
-                title: "Se excede el límite de tamaño de archivos :(",
-                icon: "error",
-                showCancelButton: false,
-                showConfirmButton: true,
-                confirmButtonColor: "#4796ff"
-            })
-            return;
-        }
-
-        Swal.fire({
-            title: 'Por favor espere',
-            html: 'Enviando ticket...',
-            allowOutsideClick: false,
-            showCancelButton: false,
-            showConfirmButton: false,
-            backdrop:true,
-            willOpen: ()=> {
-                Swal.showLoading()
-            }
-        });
-        const formData = new FormData();
-        if (selectedImage !== null){
-            formData.append('file', selectedImage);
-        }
-        if (setSelectedFiles !== null) {
-            for (let i=0; i<selectedFiles?.length; i++){
-                formData.append('file', selectedFiles[i]);
-            }
-        }
-        formData.append('message', text.replaceAll('<','(').replaceAll('>',')'));
-        formData.append('fechaSolicitud',Date());
-        formData.append('lugar',lugar);
-        formData.append('categoria',tipo);
-
-        dispatch( solicitarTicket(formData) );
-
-        reset();
-        setSelectedImage(null);
-        setImage(null);
-        setSelectedFiles([]);
-        setLugar('cat');
-        setTipo('solicitud');
-    }   
-
-    
-
+       submit();
+    }
+       
     return (
         <div className="ticket__container">
             <form onSubmit={handleSubmit}>
-                <div className="input__container radio">
-                    <Lugar lugar={lugar} setLugar={setLugar}/>
-                    <Tipo tipo={tipo} setTipo={setTipo} />
-                </div>
+                <Servicio 
+                    lugar={lugar} 
+                    setLugar={setLugar} 
+                    tipo={tipo} 
+                    setTipo={setTipo} 
+                />
+                <Reporte 
+                    text={text} 
+                    handleInputChange={handleInputChange} 
+                />
 
-                <Reporte text={text} handleInputChange={handleInputChange} />
-
-                <div className="input__container">
-                    <p className="input__p">En caso de ser necesario.</p>
-                    <div className="files">
-                        <CargarImagen 
-                            setSelectedImage={setSelectedImage} 
-                            setImage={setImage} 
-                            setLimitSize={setLimitSize}
-                        />                        
-                        <CargarArchivos
-                            setSelectedFiles={setSelectedFiles}
-                            setLimitSize={setLimitSize}
-                        />
-                    </div>
-                    <p className="input__p--nota">* No se aceptan archivos mayores a 10MB.</p>
-                </div>
+                <Cargar 
+                    setSelectedImage={setSelectedImage} 
+                    setImage={setImage}
+                    setSelectedFiles={setSelectedFiles}
+                    setLimitSize={setLimitSize}
+                />
 
                 {
                     image && (
-                        <div className="input__container image">
-                            <p className="input__p">Previsualización de la imagen seleccionada</p>
-                            {/* <img src={image} alt="imagen"/> */}
-                            <ArchivoImagen 
-                                image={image} 
-                                alt={selectedImage.name}
-                                onDeleteImage={onDeleteImage}
-                            />
-                        </div>
+                        <Imagen 
+                            image={image} 
+                            alt={selectedImage.name}
+                            onDeleteImage={onDeleteImage}
+                        />
                     )
                 }
                 {
                     (selectedFiles.length !== 0) && (
-                        <div className="input__container image">
-                            <p className="input__p">Archivos seleccionados</p>
-                            <ul>
-                                {
-                                    selectedFiles.map((file) => (
-                                        <ArchivoItem 
-                                            key={file.name}
-                                            nombre={file.name}
-                                            tam={file.size*0.001}
-                                            onDeleteFile={() => onDeleteFile(file.name, file.size)}
-                                        />
-                                    ))
-                                }
-                            </ul>
-                        </div>
+                        <Archivos 
+                            selectedFiles={selectedFiles} 
+                            onDeleteFile={onDeleteFile} 
+                        />
                     )
                 }
                 <div className="input__container">
