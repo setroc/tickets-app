@@ -1,0 +1,36 @@
+.email-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    i {
+        font-size: 15px;
+        color: $blue;
+    }
+}
+.rotate {
+    transform: rotate(90deg);
+}
+.email-content.none {
+    display: none;
+}
+.email-content {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+    div {
+        width: 100%;
+        input {
+            width: 90%;
+            display: block;
+            box-sizing: border-box;
+        }
+        &:first-of-type {
+            border-right: 1px solid #4796ff;
+        }
+        input[type=datetime-local] {
+            border-bottom: none;
+        }
+    }
+    
+}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import Reporte from './../reporte/Reporte';
 import useFormTicket from './../../hooks/useFormTicket';
@@ -6,9 +6,16 @@ import Servicio from '../servicio/Servicio';
 import Cargar from '../cargar/Cargar';
 import Imagen from '../imagen/Imagen';
 import Archivos from '../archivos/Archivos';
+import { useSelector } from 'react-redux';
+import Email from '../email/Email';
 
-export const TicketScreen = () => { 
+export const TicketScreen = () => {
+    const {role} = useSelector(state => state.auth);
     const {
+        email, 
+        setEmail,
+        fechaSoli, 
+        setFechaSoli,
         lugar, 
         setLugar, 
         tipo, 
@@ -29,12 +36,20 @@ export const TicketScreen = () => {
 
     const handleSubmit = (e)=> {
         e.preventDefault();
-       submit();
+        submit(role);
     }
        
     return (
         <div className="ticket__container">
             <form onSubmit={handleSubmit}>
+                {
+                    role === 'ADMIN' && <Email 
+                                            email={email} 
+                                            setEmail={setEmail} 
+                                            fechaSoli={fechaSoli}
+                                            setFechaSoli={setFechaSoli}
+                                        />
+                }
                 <Servicio 
                     lugar={lugar} 
                     setLugar={setLugar} 

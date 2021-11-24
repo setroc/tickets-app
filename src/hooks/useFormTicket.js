@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
+import moment from 'moment';
+import 'moment/locale/es-mx';
 
 import { solicitarTicket } from '../actions/ticket';
 
 const useFormTicket = () => {
     const dispatch = useDispatch();
+
+    //Estado del componente Email en caso de tickets elaborados por nosotros
+    const [email, setEmail] = useState('');
+    const [fechaSoli, setFechaSoli] = useState(moment().format("YYYY-MM-DD[T]HH:mm"));
 
     //limite de archvios
     const [limitSize, setLimitSize] = useState(10*1024*1024);
@@ -71,11 +77,10 @@ const useFormTicket = () => {
         });
         return true;
     }
-    const submit = () => {
+    const submit = (role) => {
         if ( !validarDatos() ) {
             return;
         }
-
         Swal.fire({
             title: 'Por favor espere',
             html: 'Enviando ticket...',
@@ -97,10 +102,15 @@ const useFormTicket = () => {
             }
         }
         formData.append('message', textArea.replaceAll('<','(').replaceAll('>',')'));
-        formData.append('fechaSolicitud',Date());
         formData.append('lugar',lugar);
         formData.append('categoria',tipo);
-
+        if ( role === 'ADMIN' && email !== '' ) { // ticket hecho por admin
+            formData.append('email', email);
+            formData.append('fechaSolicitud',fechaSoli);
+        }else {
+            formData.append('fechaSolicitud',moment().format("YYYY-MM-DD[T]HH:mm"));
+        }
+        
         dispatch( solicitarTicket(formData) );
 
         resetTextArea();
@@ -109,8 +119,15 @@ const useFormTicket = () => {
         setSelectedFiles([]);
         setLugar('cat');
         setTipo('solicitud');
+
+        setEmail('');
+        setFechaSoli(moment().format("YYYY-MM-DD[T]HH:mm"));
     }
     return {
+        email, 
+        setEmail,
+        fechaSoli, 
+        setFechaSoli,
         lugar,
         setLugar,
         tipo,
