@@ -92,84 +92,14 @@ export const Item = ({ ticket, i, setTickets }) => {
     }
 
     return (
-        <tr>
-            <td>{i+1}</td>
-            <td>{moment(new Date(fechaSolicitud)).format("YYYY-MM-DD HH:mm")}</td>
-            <td>
-                <input
-                    className="item__time"
-                    type="datetime-local" 
-                    name="inicio" 
-                    value={inicio}
-                    onChange={handleDateInicioChange}
-                    min={moment(fechaSolicitud).format("YYYY-MM-DD[T]HH:mm")}
-                    disabled={editar}
-                />
-            </td>
-            <td>
-                <input
-                    className="item__time"
-                    type="datetime-local" 
-                    name="fin" 
-                    value={fin}
-                    min={inicio}
-                    onChange={handleDateFinChange}
-                    disabled={editar}
-                />
-            </td>
-            <td>
-                <select 
-                    name="horario" 
-                    id="horario" 
-                    disabled={editar}
-                    value={horario} 
-                    onChange={handleHorario}
-                >
-                    <option value="habil">Hábil</option>
-                    <option value="nohabil">No hábil</option>
-                </select>
-            </td>
-            <td>{noFolio}</td>
-            <td>
-                <select 
-                    name="categoria" 
-                    id="categoria" 
-                    disabled={editar}
-                    value={categoria}
-                    onChange={handleCategoria}
-                >
-                    <option value="solicitud">Solicitud</option>
-                    <option value="incidente">Incidente</option>
-                    <option value="mantenimiento">Mantenimiento</option>
-                    <option value="monitoreo">Monitoreo</option>
-                    <option value="rma">RMA</option>
-                </select>
-            </td>
-            <td>
-                <select 
-                    name="rma" 
-                    id="rma" 
-                    disabled={editar}
-                    value={rma}
-                    onChange={handleRma}
-                >
-                    <option value="si">Si</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td>
-                <select 
-                    name="atencion" 
-                    id="atencion" 
-                    disabled={editar}
-                    value={atencion}
-                    onChange={handleAtencion}
-                >
-                    <option value="sitio">Sitio</option>
-                    <option value="remoto">Remoto</option>
-                </select>
-            </td>
-            <td>
+        <div className="tabla__row">
+            <div className="tabla__row-element">
+                <p>{i+1}</p>
+            </div>
+            <div className="tabla__row-element">
+                <p>{noFolio}</p>
+            </div>
+            <div className="tabla__row-element">
                 <select 
                     name="estatus" 
                     id="estatus" 
@@ -180,8 +110,11 @@ export const Item = ({ ticket, i, setTickets }) => {
                     <option value="abierto">Abierto</option>
                     <option value="cerrado">Cerrado</option>
                 </select>
-            </td>
-            <td>
+            </div>
+            <div className="tabla__row-element">
+                <p>{ticket.mensaje}</p>
+            </div>
+            <div className="tabla__row-element">
                 <select 
                     name="severidad" 
                     id="severidad" 
@@ -195,8 +128,84 @@ export const Item = ({ ticket, i, setTickets }) => {
                     <option value="critica">Crítica</option>
                     <option value="extraordinaria">Extraordinaria</option>
                 </select>
-            </td>
-            <td>
+            </div>
+            <div className="tabla__row-element fechaSolicitud">
+                <p>{moment(new Date(fechaSolicitud)).format("YYYY-MM-DD HH:mm")}</p>
+            </div>
+            <div className="tabla__row-element">
+                <input
+                    className="item__time"
+                    type="datetime-local" 
+                    name="inicio" 
+                    value={inicio}
+                    onChange={handleDateInicioChange}
+                    min={moment(fechaSolicitud).format("YYYY-MM-DD[T]HH:mm")}
+                    disabled={editar}
+                />
+            </div>
+            <div className="tabla__row-element">
+                <input
+                    className="item__time"
+                    type="datetime-local" 
+                    name="fin" 
+                    value={fin}
+                    min={inicio}
+                    onChange={handleDateFinChange}
+                    disabled={editar}
+                />
+            </div>
+            <div className="tabla__row-element">
+                <select 
+                    name="horario" 
+                    id="horario" 
+                    disabled={editar}
+                    value={horario} 
+                    onChange={handleHorario}
+                >
+                    <option value="habil">Hábil</option>
+                    <option value="nohabil">No hábil</option>
+                </select>
+            </div>
+            <div className="tabla__row-element">
+                <select 
+                    name="categoria" 
+                    id="categoria" 
+                    disabled={editar}
+                    value={categoria}
+                    onChange={handleCategoria}
+                >
+                    <option value="solicitud">Solicitud</option>
+                    <option value="incidente">Incidente</option>
+                    <option value="mantenimiento">Mantenimiento</option>
+                    <option value="monitoreo">Monitoreo</option>
+                    <option value="rma">RMA</option>
+                </select>
+            </div>
+            <div className="tabla__row-element">
+                <select 
+                    name="rma" 
+                    id="rma" 
+                    disabled={editar}
+                    value={rma}
+                    onChange={handleRma}
+                >
+                    <option value="si">Si</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div className="tabla__row-element">
+                <select 
+                    name="atencion" 
+                    id="atencion" 
+                    disabled={editar}
+                    value={atencion}
+                    onChange={handleAtencion}
+                >
+                    <option value="sitio">Sitio</option>
+                    <option value="remoto">Remoto</option>
+                </select>
+            </div>
+            <div className="tabla__row-element">
                 <select 
                     name="sla" 
                     id="sla" 
@@ -207,8 +216,8 @@ export const Item = ({ ticket, i, setTickets }) => {
                     <option value="cumple">Cumple</option>
                     <option value="nocumple">No cumple</option>
                 </select>
-            </td>
-            <td>
+            </div>
+            <div className="tabla__row-element">
                 <button
                     onClick={handleEditar}
                     disabled={!editar}
@@ -221,24 +230,7 @@ export const Item = ({ ticket, i, setTickets }) => {
                 >
                     Guardar
                 </button>
-            </td>
-            {/* <td>{usuarioNombre}</td>
-            <td className="mensaje">{mensaje}</td>
-            <td>{noFolio}</td> */}
-        </tr>
+            </div>
+        </div>
     )
 }
-
-    // const dispatch = useDispatch();
-
-    // const {mensaje, fechaSolicitud, fechaAtencion, fechaFin, noFolio, usuario} = ticket;
-
-    // useEffect(() => {
-    //     if (inicio !== moment(fechaAtencion).format("YYYY-MM-DD[T]HH:mm") || fin !== moment(fechaFin).format("YYYY-MM-DD[T]HH:mm") ) {
-    //         dispatch(actualizarFecha({
-    //             ...ticket, 
-    //             fechaAtencion: inicio, 
-    //             fechaFin: fin,
-    //         }));
-    //     }
-    // }, [inicio, fin, dispatch, fechaAtencion, fechaFin, ticket])

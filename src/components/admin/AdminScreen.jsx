@@ -94,30 +94,6 @@ export const AdminScreen = () => {
             {
                 tickets && <TablaScreen tickets={tickets} />
             }
-            {/* <button className="admin__btn">
-                Exportar
-            </button> */}
         </div>
     )
 }
-// const handleDownloadFile = async () => {
-    //     console.log('click')
-    //     const resp = await fetch(`/api/ticket/download`);
-    //     const blob = await resp.blob();
-    //     const url = window.URL.createObjectURL(new Blob([blob]));
-    //     const link = document.createElement('a');
-    //     link.href = url;
-    //     link.setAttribute(
-    //         'download',
-    //         `FileName.png`,
-    //     );
-      
-    //     // Append to html link element page
-    //     document.body.appendChild(link);
-    
-    //     // Start download
-    //     link.click();
-    
-    //     // Clean up and remove the link
-    //     link.parentNode.removeChild(link);
-    // }

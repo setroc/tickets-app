@@ -1,16 +1,8 @@
 .admin__container {
     background-color: $primary;
-    // border-radius: 10px;
     width: 100%;
-    // min-height: 100vh;
-    // min-height: 100%;
     min-height: calc(100vh - 70px);
     box-sizing: border-box;
-    // margin: 0 auto;
-    // padding-bottom: 20px;
-    // display: flex;
-    // flex-direction: column;
-
     .filtro__container {
         display: grid;
         grid-template-columns: 2fr 2fr 1fr;
@@ -50,27 +42,7 @@
                 }
             }
         }
-
-        // .filtro-input {
-        //     background-color: #efefef;
-        //     margin: 0 5px 0 0;
-        //     padding-left: 5px;
-        //     border: 1px solid #878787;
-        //     border-radius: 4px;
-        //     input {
-        //         background-color: #efefef;
-        //         width: auto;
-        //     }
-        // }
     }
-    // & > .input__container {
-
-    //     display: block;
-    //     bottom: 0;
-    // }
-    // &> .input__container > button {
-    //   margin-top: 10px;  
-    // }
     > {
         .admin__btn {
             background-color: $blue;
@@ -83,24 +55,9 @@
             align-self: center;
             font-family: 'Montserrat', sans-serif;
             margin-top: 10px;
-            // display: block;
-            // position: absolute;
-            // bottom: 10px;
             &:hover {
                 background-color: darken($color: $blue, $amount: 5);
             }
         }
     }
 }
-// button {
-//     background-color: $blue;
-//     border: none;
-//     color: white;
-//     padding: 10px 0;
-//     border-radius: 10px;
-//     font-size: 5rem;
-//     transition: color .5s ease-in-out;
-//     &:hover {
-//         background-color: darken($color: $blue, $amount: 5);
-//     }
-// }

@@ -1,99 +1,49 @@
-.tabla_container {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    // border-spacing: 0;
-    border-collapse: collapse;
-    box-sizing: border-box;
-
-    > {
-        thead {
-            width: 100%;
-            >  tr > {
-                
-                th {
-                    font-size: 1.5rem;
-                    border: 1px solid black;
-                    font-weight: normal;
-                }
-            }
-        }
-        tbody {
-            width: 100%;
-            > tr > {
-                td {
-                    border: 1px solid black;
-                    font-size: 1.5rem;
-                    text-align: center;
-                    height: 10px;
-                    // overflow: scroll;
-                    overflow: auto;
-                    input[type=datetime-local]{
-                        font-size: 1.5rem;
-                        border: 0;
-                        padding: 0;
-                    }
-                }
-                .mensaje {
-                    text-align: start;
-                    max-width: 100px;
-                }
-            }
+.tabla__container {
+    display: grid;
+    grid-auto-rows: auto;
+    overflow-y: scroll;
+    min-width: 100%;
+    height: 100%;
+}
+.tabla__header {
+    display: grid;
+    // grid-template-columns: repeat(14, auto);
+    grid-template-columns: 30px 150px 90px 400px 120px 150px 270px 270px repeat(6, 100px);
+    border-bottom: 1px solid $gray;
+    
+    .tabla__header-titulo {
+        border-right: 1px solid $gray;
+        font-weight: normal;
+        text-align: center;
+        padding: 5px;
+        font-size: 1.5rem;
+        &:last-of-type {
+            border-right: none;
         }
     }
-    // thead {
-    //     width: 100%;
-    // }
-    // th {
-    //     font-size: 1.5rem;
-    //     font-weight: 400;
-    //     border: 1px solid $gray;
-    //     border-top: none;
-    //     background-color: lighten($color: $blue, $amount: 20%);
-    //     border: 1px solid black;
-    // }
-    // td {
-    //     font-size: 1.7rem;
-    //     text-align: center;
-    //     border: 1px solid lighten($color: $gray, $amount: 20%);
-    //     border-top: none;
-    // }
 }
-// .tabla_container {
-//     .titulos {
-//         // padding: 5px;
-//         // margin: 0px;
-
-//         margin: 0;
-//         padding: 0;
-
-//         display: grid;
-//         grid-template-columns: 4% repeat(6, 9%) 15% 17% 10%;
-//         grid-template-rows: 1fr;
-//         justify-items: center;
-//         background-color: lighten($color: $gray, $amount: 20%);
-//         li {
-//             align-self: center;
-//             text-align: start;
-//             // margin: 0 5px;
-//             width: 100%;
-//             height: 100%;
-//             border-right: 1px solid black;
-//         }
-
-//     }
-    
-//     .item {
-//         padding: 0;
-//         margin: 10px;
-//         display: grid;
-//         grid-template-columns: 2% repeat(2, 10%) repeat(4, 9%) 15% 17% 10%;
-//         grid-template-rows: 1fr;
-//         justify-items: center;
-
-//         li {
-//             font-size: 1.5rem;
-//             align-self: center;
-//         }
-//     }
-// }
+.tabla__row {
+    display: grid;
+    grid-template-columns: 30px 150px 90px 400px 120px 150px 270px 270px repeat(6, 100px);
+    box-sizing: border-box;
+    height: 60px;
+    >.tabla__row-element {
+        min-height: 100%;
+        border-bottom: 1px solid $gray;
+        border-right: 1px solid $gray;
+        &:last-of-type {
+            border-right: none;
+        }
+        > p {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        > select {
+            width: 100%;
+        }
+        &:nth-child(4) {
+            text-align: start;
+            overflow-y: scroll;
+        }
+    }
+}
