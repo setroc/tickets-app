@@ -92,14 +92,14 @@ export const Item = ({ ticket, i, setTickets }) => {
     }
 
     return (
-        <div className="tabla__row">
-            <div className="tabla__row-element">
-                <p>{i+1}</p>
-            </div>
-            <div className="tabla__row-element">
-                <p>{noFolio}</p>
-            </div>
-            <div className="tabla__row-element">
+        <tr>
+            <td>
+                {i+1}
+            </td>
+            <td>
+                {noFolio}
+            </td>
+            <td>
                 <select 
                     name="estatus" 
                     id="estatus" 
@@ -110,11 +110,11 @@ export const Item = ({ ticket, i, setTickets }) => {
                     <option value="abierto">Abierto</option>
                     <option value="cerrado">Cerrado</option>
                 </select>
-            </div>
-            <div className="tabla__row-element">
-                <p>{ticket.mensaje}</p>
-            </div>
-            <div className="tabla__row-element">
+            </td>
+            <td>
+                {ticket.mensaje}
+            </td>
+            <td>
                 <select 
                     name="severidad" 
                     id="severidad" 
@@ -128,13 +128,12 @@ export const Item = ({ ticket, i, setTickets }) => {
                     <option value="critica">Crítica</option>
                     <option value="extraordinaria">Extraordinaria</option>
                 </select>
-            </div>
-            <div className="tabla__row-element fechaSolicitud">
-                <p>{moment(new Date(fechaSolicitud)).format("YYYY-MM-DD HH:mm")}</p>
-            </div>
-            <div className="tabla__row-element">
+            </td>
+            <td className="tabla__row-element fechaSolicitud">
+                {moment(new Date(fechaSolicitud)).format("YYYY-MM-DD HH:mm")}
+            </td>
+            <td>
                 <input
-                    className="item__time"
                     type="datetime-local" 
                     name="inicio" 
                     value={inicio}
@@ -142,10 +141,9 @@ export const Item = ({ ticket, i, setTickets }) => {
                     min={moment(fechaSolicitud).format("YYYY-MM-DD[T]HH:mm")}
                     disabled={editar}
                 />
-            </div>
-            <div className="tabla__row-element">
+            </td>
+            <td>
                 <input
-                    className="item__time"
                     type="datetime-local" 
                     name="fin" 
                     value={fin}
@@ -153,8 +151,8 @@ export const Item = ({ ticket, i, setTickets }) => {
                     onChange={handleDateFinChange}
                     disabled={editar}
                 />
-            </div>
-            <div className="tabla__row-element">
+            </td>
+            <td>
                 <select 
                     name="horario" 
                     id="horario" 
@@ -165,8 +163,8 @@ export const Item = ({ ticket, i, setTickets }) => {
                     <option value="habil">Hábil</option>
                     <option value="nohabil">No hábil</option>
                 </select>
-            </div>
-            <div className="tabla__row-element">
+            </td>
+            <td>
                 <select 
                     name="categoria" 
                     id="categoria" 
@@ -180,8 +178,8 @@ export const Item = ({ ticket, i, setTickets }) => {
                     <option value="monitoreo">Monitoreo</option>
                     <option value="rma">RMA</option>
                 </select>
-            </div>
-            <div className="tabla__row-element">
+            </td>
+            <td>
                 <select 
                     name="rma" 
                     id="rma" 
@@ -192,8 +190,8 @@ export const Item = ({ ticket, i, setTickets }) => {
                     <option value="si">Si</option>
                     <option value="no">No</option>
                 </select>
-            </div>
-            <div className="tabla__row-element">
+            </td>
+            <td>
                 <select 
                     name="atencion" 
                     id="atencion" 
@@ -204,8 +202,8 @@ export const Item = ({ ticket, i, setTickets }) => {
                     <option value="sitio">Sitio</option>
                     <option value="remoto">Remoto</option>
                 </select>
-            </div>
-            <div className="tabla__row-element">
+            </td>
+            <td>
                 <select 
                     name="sla" 
                     id="sla" 
@@ -216,21 +214,29 @@ export const Item = ({ ticket, i, setTickets }) => {
                     <option value="cumple">Cumple</option>
                     <option value="nocumple">No cumple</option>
                 </select>
-            </div>
-            <div className="tabla__row-element">
-                <button
-                    onClick={handleEditar}
-                    disabled={!editar}
-                >
-                    Editar
-                </button>
-                <button 
-                    onClick={handleGuardar}
-                    disabled={editar}   
-                >
-                    Guardar
-                </button>
-            </div>
-        </div>
+            </td>
+            <td>
+                {
+                    editar ? (
+                        <button
+                            className='btn-block'
+                            onClick={handleEditar}
+                            disabled={!editar}
+                        >
+                            Editar
+                        </button>
+
+                    ) : (
+                        <button 
+                            className='btn-block'
+                            onClick={handleGuardar}
+                            disabled={editar}   
+                        >
+                            Guardar
+                        </button>
+                    )
+                }
+            </td>
+        </tr>
     )
 }

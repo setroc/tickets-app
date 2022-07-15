@@ -39,6 +39,9 @@ export const startLogin = (email, password) => {
                 confirmButtonColor: "#4796ff"
             });
         }
+        setTimeout(()=>{
+            dispatch(startLogout());
+        },60000*60);
     }
 }
 const login = (usuario) => ({

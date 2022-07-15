@@ -14,7 +14,7 @@ const Lugar = ({lugar, setLugar}) => {
                     checked={lugar === 'cat' ? true : false}
                     onChange={handleRadioLugarChange}
                     />
-                    Coorporativo Caja
+                    Corporativo Caja
             </label>
             <label>
                 <input 

@@ -32,7 +32,7 @@ export const LoginScreen = () => {
                     <input 
                         type="email"
                         name="email"
-                        placeholder="usuario@domino.com"
+                        placeholder="usuario@dominio.com"
                         autoComplete="off"
                         value={email}
                         onChange={handleInputChange}

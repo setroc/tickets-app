@@ -3,6 +3,8 @@
     width: 100%;
     min-height: calc(100vh - 70px);
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     .filtro__container {
         display: grid;
         grid-template-columns: 2fr 2fr 1fr;

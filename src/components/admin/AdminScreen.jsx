@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { TablaScreen } from './TablaScreen'
 import { traerTickets } from '../../actions/ticket';
+import Tabla from './Tabla';
 
 moment.locale('es-mx');
 const initialValues = {
@@ -92,8 +92,12 @@ export const AdminScreen = () => {
                 </div>
             </div>
             {
-                tickets && <TablaScreen tickets={tickets} />
+                // tickets && <TablaScreen tickets={tickets} />
             }
+            {
+                tickets && <Tabla tickets={tickets} />
+            }
+            {/* <Tabla /> */}
         </div>
     )
 }
